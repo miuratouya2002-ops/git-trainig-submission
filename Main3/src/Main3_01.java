@@ -1,5 +1,5 @@
 public class Main3_01 {
-// 天気による行動の変化をJavaで表す
+	// 天気による行動の変化をJavaで表す
 	public static void main(String[] args) {
 		boolean tenki = true;
 		if (tenki == true) {

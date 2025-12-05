@@ -13,6 +13,6 @@ public class Main3_05 {
 		case 4, 5 -> {
 			System.out.println("うーん...");
 		}
+		}
 	}
-}
 }

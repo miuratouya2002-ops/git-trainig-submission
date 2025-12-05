@@ -1,17 +1,17 @@
 public class Main3_06 {
-// 伝統的なswitch文の利用
+	// 伝統的なswitch文の利用
 	public static void main(String[] args) {
 		System.out.println("あなたの運勢を占います");
 		int fortune = new java.util.Random().nextInt(5) + 1;
 		switch (fortune) {
 		case 1, 2:
-		System.out.println("いいね！");
-		break;
+			System.out.println("いいね！");
+			break;
 		case 3:
-		System.out.println("普通です");
-		break;
+			System.out.println("普通です");
+			break;
 		case 4, 5:
-		System.out.println("うーん…");
+			System.out.println("うーん…");
 		}
 	}
 }

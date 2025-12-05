@@ -7,6 +7,7 @@ public class Main5_14 {
 		}
 		return newArray;
 	}
+
 	public static void main(String[] args) {
 		int[] array = makeArray(3);
 		for (int i : array) {

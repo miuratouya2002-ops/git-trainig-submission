@@ -1,5 +1,5 @@
 public class Main3_02 {
-// トイレの空きを待つ繰り返し
+	// トイレの空きを待つ繰り返し
 	public static void main(String[] args) {
 		boolean doorClose = true;
 		while (doorClose == false) {
