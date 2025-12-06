@@ -1,4 +1,5 @@
-public class Main6_01 {
+//public class Main6_01
+public class Calc {
 // 計算機プログラム
 	public static void main(String[] args) {
 		int a = 10; int b = 2;
