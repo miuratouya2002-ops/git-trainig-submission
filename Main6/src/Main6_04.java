@@ -1,4 +1,4 @@
-//public class Main6_04
+//public class Main6_04{
 
 import calcapp.logics.Calclogic;
 

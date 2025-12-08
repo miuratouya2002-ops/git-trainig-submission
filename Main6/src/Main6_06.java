@@ -1,4 +1,4 @@
-//public class Main6_06 
+//public class Main6_06 {
 //CalcLogicをcalcapp.logicsに所属させる
 package calcapp.logics;
 

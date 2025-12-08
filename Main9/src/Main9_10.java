@@ -1,9 +1,15 @@
+//public class Main9_10 {
+// コンストラクタで引数を追加情報として受け取る
+public class Hero {
+	String name;
+	int hp;
+	Sword sword;
 
-public class Main9_10 {
-
-	public static void main(String[] args) {
-		// TODO 自動生成されたメソッド・スタブ
-
+	public void attack() {
+		System.out.println(this.name + "は攻撃した！");
 	}
 
+	public Hero() {
+		this.hp = 100; //引数の値でnameフィールドを初期化
+	}
 }

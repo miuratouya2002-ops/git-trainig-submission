@@ -1,9 +1,9 @@
-
 public class Main9_09 {
-
+	// コンストラクタが定義されたHeroを生み出す
 	public static void main(String[] args) {
-		// TODO 自動生成されたメソッド・スタブ
+		Hero h = new Hero();
 
+		System.out.println(h.hp);
 	}
 
 }

@@ -1,5 +1,5 @@
 public class Main9_04 {
-//剣を装備した勇者を生み出す
+	//剣を装備した勇者を生み出す
 	public static void main(String[] args) {
 		sword s = new Sword();
 		s.name = "炎の剣";

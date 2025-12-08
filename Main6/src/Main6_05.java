@@ -1,4 +1,4 @@
-//public class Main6_05 
+//public class Main6_05 {
 package calcapp.main;
 // Calcをcalcapp.mainに所属させる
 public class Calc {
