@@ -1,4 +1,7 @@
 //public class Main6_04
+
+import calcapp.logics.Calclogic;
+
 public class Calc {
 	public static void main(String[] args) {
 		int a = 10; int b = 2;
