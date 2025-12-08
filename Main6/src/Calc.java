@@ -1,5 +1,4 @@
-//public class Main6_01
-/*public class Calc {
+public class Calc {
 // 計算機プログラム
 	public static void main(String[] args) {
 		int a = 10; int b = 2;
@@ -13,4 +12,4 @@
 	public static int hiku(int a, int b) {
 		return (a - b);
 	}
-}*/
+}

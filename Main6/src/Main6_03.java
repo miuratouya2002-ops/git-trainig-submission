@@ -1,6 +1,5 @@
 // メインメソッド内の呼び出しを修正する
-//public class Main6_03 {
-public class Calc {
+public class Main6_03 {
 	public static void main(String[] args) {
 		int a = 10;
 		int b = 2;
