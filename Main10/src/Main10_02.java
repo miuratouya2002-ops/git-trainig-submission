@@ -1,4 +1,4 @@
-public class Main10_02 {
+/*public class Main10_02 {
 //朝香さんが作成したSuperHeroクラス
 	public class SuperHero {
 		String name = "ミナト";
@@ -24,4 +24,4 @@ public class Main10_02 {
 			this.flying = false;
 			System.out.println("着地した！");
 		}
-}
+}*/

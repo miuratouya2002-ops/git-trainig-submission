@@ -1,4 +1,4 @@
-public class Main10_05 {
+/*public class Main10_05 {
 // SuperHeroクラスにrun()を再定義する
 	public class SuperHero extends Hero {
 		boolean flying;
@@ -14,3 +14,4 @@ public class Main10_05 {
 			System.out.println(this.name + "は撤退した");
 	}
 }
+*/

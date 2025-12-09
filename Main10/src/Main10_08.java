@@ -1,4 +1,4 @@
-//public class Main10_08 {
+/*public class Main10_08 {
 // attack()をオーバーライドしたSuperHero
 public class SuperHero extends Hero {
 	boolean flying;
@@ -26,3 +26,4 @@ public class SuperHero extends Hero {
 		}
 	}
 }
+*/

@@ -1,4 +1,4 @@
-public class Main10_03 {
+/*public class Main10_03 {
 // Heroクラスを継承してSuperHeroを作成する
 	public class SuperHero extends Hero {
 		boolean flying;
@@ -11,3 +11,4 @@ public class Main10_03 {
 			System.out.println("着地した");
 	}
 }
+*/

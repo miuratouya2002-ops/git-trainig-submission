@@ -1,4 +1,4 @@
-public class Main10_01 {
+/*public class Main10_01 {
 //「戦う」と「逃げる」しかできないHeroクラス
 	public class Hero {
 		String name = "ミナト";
@@ -14,3 +14,4 @@ public class Main10_01 {
 			System.out.println(this.name + "は逃げ出した！");
 	}
 }
+	*/
