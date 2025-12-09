@@ -1,9 +1,11 @@
+/*public class Main11_16 {
+//インタフェースを継承する
+public interface Human extends Creature {
+	void talk();
 
-public class Main11_16 {
+	void watch();
 
-	public static void main(String[] args) {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
+	void hear();
+	//さらに、親インタフェースからrun()を継承する
 }
+*/

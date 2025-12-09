@@ -1,4 +1,4 @@
-//public class Main11_02 {
+/*public class Main11_02 {
 //attackメソッドの中身を空にしておく
 public class Character {
 	String name;
@@ -10,3 +10,4 @@ public class Character {
 	public void attack(Matango m) {
 	}
 }
+*/

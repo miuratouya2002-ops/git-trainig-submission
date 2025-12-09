@@ -1,9 +1,6 @@
-
-public class Main11_12 {
-
-	public static void main(String[] args) {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
+/*public class Main11_12 {
+//インタフェースとして宣言したCreature
+public interface Creature {
+	public abstract void run();
 }
+*/

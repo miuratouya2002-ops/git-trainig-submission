@@ -1,9 +1,6 @@
-
-public class Character {
-
-	public static void main(String[] args) {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
+public abstract class Character {
+  String name;
+  int hp;
+  public abstract void run();
+  public abstract void attack(Matango m);
 }

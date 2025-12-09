@@ -1,4 +1,4 @@
-//public class Main11_10 {
+/*public class Main11_10 {
 //抽象メソッドを正しくオーバーライドする
 public class Dancer extends Character {
 	public void dance() {
@@ -11,3 +11,4 @@ public class Dancer extends Character {
 		m.hp -= 3;
 	}
 }
+*/

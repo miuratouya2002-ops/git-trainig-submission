@@ -1,4 +1,4 @@
-//public class Main11_01 {
+/*public class Main11_01 {
 //Characterクラスを作成（未完成）
 public class Character {
 	String name;
@@ -16,3 +16,4 @@ public class Character {
 		System.out.println("敵に??ポイントのダメージをあたえた！");
 	}
 }
+*/

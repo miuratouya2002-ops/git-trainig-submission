@@ -1,4 +1,4 @@
-//public class Main11_05 {
+/*public class Main11_05 {
 //オーバーライドしたつもりのHeroクラス
 public class Hero extends Character {
 	public void atack(Matango m) {
@@ -7,3 +7,4 @@ public class Hero extends Character {
 		m.hp -= 10;
 	}
 }
+*/

@@ -1,4 +1,4 @@
-//public class Main11_07 {
+/*public class Main11_07 {
 //attack()を抽象メソッドとして宣言する
 public class Character {
 	String name;
@@ -10,3 +10,4 @@ public class Character {
 
 	public abstract void attack(Matango m);
 }
+*/

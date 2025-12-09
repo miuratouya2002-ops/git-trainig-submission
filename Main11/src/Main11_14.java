@@ -1,9 +1,10 @@
+/*public class Main11_14 {
+//CleaningServiceインタフェース
+public interface CleaningService {
+	Shirt washShirt(Shirt s);
 
-public class Main11_14 {
+	Towl washTowl(Towl t);
 
-	public static void main(String[] args) {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
+	Coat washCoat(Coat c);
 }
+*/

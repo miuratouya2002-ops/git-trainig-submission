@@ -1,4 +1,4 @@
-//public class Main11_08 {
+/*public class Main11_08 {
 //Characterを抽象表現として宣言する
 public abstract class Character {
 	String name;
@@ -10,3 +10,4 @@ public abstract class Character {
 
 	public abstract void attack(Matango m);
 }
+*/

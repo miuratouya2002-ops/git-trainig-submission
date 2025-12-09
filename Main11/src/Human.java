@@ -1,9 +1,6 @@
-
-public class Human {
-
-	public static void main(String[] args) {
-		// TODO 自動生成されたメソッド・スタブ
-
-	}
-
+public interface Human extends Creature {
+  void talk();
+  void watch();
+  void hear();
+  // さらに、親インタフェースからrun()を継承する
 }

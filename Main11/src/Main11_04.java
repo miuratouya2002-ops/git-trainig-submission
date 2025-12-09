@@ -1,4 +1,4 @@
-//public class Main11_04 {
+/*public class Main11_04 {
 //オーバーライドを忘れたHeroクラス
 public class Hero extends Character {
 }
@@ -10,3 +10,4 @@ public class Main {
 		h.attack(m);
 	}
 }
+*/

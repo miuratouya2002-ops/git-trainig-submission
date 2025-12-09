@@ -1,4 +1,5 @@
-//public class Main11_03 {
+/*public class Main11_03 {
+//未来の開発者が作成するHeroクラス
 public class Hero extends Character {
 	public void attack(Matango m) {
 		System.out.println(this.name + "の攻撃！");
@@ -6,3 +7,4 @@ public class Hero extends Character {
 		m.hp -= 10;
 	}
 }
+*/

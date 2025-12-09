@@ -1,4 +1,4 @@
-//public class Main11_09 {
+/*public class Main11_09 {
 //抽象メソッドのオーバーライド忘れ（エラー）
 public class Dancar extends Character {
 
@@ -6,3 +6,4 @@ public class Dancar extends Character {
 		System.out.println(this.name + "は情熱的に踊った");
 	}
 }
+*/
