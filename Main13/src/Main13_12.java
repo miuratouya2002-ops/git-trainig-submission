@@ -1,5 +1,5 @@
 //カプセル化を行った後
-public class Hero {
+/*public class Hero {
 	private String name;
 	public String getname() {
 		return this.name;
@@ -9,3 +9,4 @@ public class Hero {
 	}
 	//
 }
+*/

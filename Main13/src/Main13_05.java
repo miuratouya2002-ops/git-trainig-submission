@@ -1,5 +1,5 @@
 //dieメソッドをprivateにする
-public class Hero {
+/*public class Hero {
 	//
 	private void die() {
 		System.out.println(this.name + "は死んでしまった！");
@@ -7,3 +7,4 @@ public class Hero {
 	}
 	//
 }
+*/

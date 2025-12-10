@@ -1,5 +1,5 @@
 //attackメソッドはpublicにする
-public class Hero {
+/*public class Hero {
 	//
 	void sleep() {
 		//
@@ -10,3 +10,4 @@ public class Hero {
 	}
 	//
 }
+*/

@@ -1,5 +1,5 @@
 //hpフィールドをprivateにしたHeroクラス
-public class Hero {
+/*public class Hero {
 	private int hp;
 	String name;
 	Sword sword;
@@ -11,3 +11,4 @@ public class Hero {
 	}
 	//
 }
+*/

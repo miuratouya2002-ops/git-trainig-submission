@@ -1,5 +1,5 @@
 //setterメソッドで値の妥当性をチェックする
-private String name;
+/*private String name;
 
 public void setName(String name) {
 	if (name == null) {
@@ -13,3 +13,4 @@ public void setName(String name) {
 	}
 	this.name = name;
 }
+*/

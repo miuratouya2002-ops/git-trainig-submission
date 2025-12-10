@@ -1,5 +1,5 @@
 //「王様クラス」の不具合
-public class King {
+/*ublic class King {
 	public void talk(Hero h) {
 		System.out.println("王様：ようこそ我が国へ、勇者" + h.name + "よ。");
 		System.out.println("王様：長旅疲れたであろう。");
@@ -8,3 +8,4 @@ public class King {
 		//
 	}
 }
+*/

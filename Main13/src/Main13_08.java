@@ -1,5 +1,5 @@
 //HeroクラスにgetNameメソッドを追加
-public class Hero {
+/*public class Hero {
 	private String name;
 
 	//
@@ -7,3 +7,4 @@ public class Hero {
 		return this.name;
 	}
 }
+*/

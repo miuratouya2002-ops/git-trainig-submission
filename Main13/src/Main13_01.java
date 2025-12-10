@@ -1,5 +1,5 @@
 //アクセス制御されていないHeroクラス
-public class Hero {
+/*public class Hero {
 	int hp;
 	String name;
 	Sword sword;
@@ -30,3 +30,4 @@ public class Hero {
 }
 //
 }}
+*/
