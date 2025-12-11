@@ -42,7 +42,9 @@ public class Point {
 	 * @param x
 	 */
 	
-	public setX(int x) {
+	public void setX(int x) {
+		this.x = x;
+	}
 	/**
 	 * yフィールドの値を返すメソッド
 	 * @return
@@ -55,7 +57,7 @@ public class Point {
 	 * 引数で渡された値を、yフィールドにセットするメソッド
 	 * @param y
 	 */
-	public setY(int y) {
-	    
+	public void setY(int y) {
+	    this.y = y;
 	}
 }

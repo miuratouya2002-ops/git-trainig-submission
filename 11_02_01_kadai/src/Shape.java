@@ -7,4 +7,3 @@ public abstract class Shape implements Figure {
 	
 //長さ測定機能の定義
 	public abstract void getperimeter();
-}
