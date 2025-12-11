@@ -45,6 +45,7 @@ public class Point {
 	public void setX(int x) {
 		this.x = x;
 	}
+	
 	/**
 	 * yフィールドの値を返すメソッド
 	 * @return
