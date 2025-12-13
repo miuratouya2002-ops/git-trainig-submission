@@ -1,4 +1,4 @@
-public class Main9_04 {
+/*public class Main9_04 {
 	//剣を装備した勇者を生み出す
 	public static void main(String[] args) {
 		sword s = new Sword();
@@ -11,3 +11,4 @@ public class Main9_04 {
 		System.out.println("現在の武器は" + h.sword.name);
 	}
 }
+*/

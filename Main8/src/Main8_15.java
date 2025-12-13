@@ -1,4 +1,4 @@
-//public class Main8_15 {
+/*public class Main8_15 {
 // お化けキノコクラスの定義
 public class Matango {
 	int hp;
@@ -10,3 +10,4 @@ public class Matango {
 	}
 
 }
+*/

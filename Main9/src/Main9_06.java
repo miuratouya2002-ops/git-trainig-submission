@@ -1,4 +1,4 @@
-public class Main9_06 {
+/*public class Main9_06 {
 	//勇者と魔法使いを生み出す
 	public static void main(String[] args) {
 		Hero h1 = new Hero();
@@ -15,3 +15,4 @@ public class Main9_06 {
 		w.heal(h2); //アサカを回復させる(HP: 110 → 120)
 	}
 }
+*/

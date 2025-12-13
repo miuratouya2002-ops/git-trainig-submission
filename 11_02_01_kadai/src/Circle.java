@@ -76,7 +76,7 @@ public class Circle extends Shape {
 	//メモ↓System.out.printlnで()内を表示
 	//　　　"[円を描画] 中心点"を表示
 	//　　　center.getX
-		System.out.println("[円を描画] 中心点" + this.center.getX() + "," + this.center.getY() + "から半径" + this.radius);
+		System.out.println("[円を描画] 中心点(" + this.center.getX() + "," + this.center.getY() + ")から半径" + this.radius);
 	}
 	
 	//　戻り値はdouble

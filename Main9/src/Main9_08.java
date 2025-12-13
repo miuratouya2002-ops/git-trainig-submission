@@ -1,4 +1,4 @@
-public class Main9_08 {
+/*public class Main9_08 {
 	// 生まれた直後の動作を定義したHeroクラス
 	Public
 	class Hero {
@@ -15,3 +15,4 @@ public class Main9_08 {
 			this.hp = 100;
 		}
 }
+*/

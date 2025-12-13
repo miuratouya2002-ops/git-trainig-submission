@@ -63,10 +63,12 @@ public class Triangle extends Polygon {
 		//　　　getを使ってp3フィールドのYにアクセス
 		//　　　"の三角形"を表示
 		//　　　それぞれ+
-		System.out.println("[三角形を描画] 点1" + p1.getX() + p1.getY() + "から点2" + p2.getX() + p2.getY() + "点3" + p3.getX()
-				+ p3.getY() + "の三角形");
+		System.out.println("[三角形を描画] 点1(" + p1.getX() + "," + p1.getY() + ")から点2(" + (p2.getX()) + "," + (p2.getY()) + ")点3("  + (p3.getX())
+				+ "," + (p3.getY()) + ")の三角形");
 	}
 	
+	//3つの座標を使い、以下の計算式で算出した結果を返す。
+    //p1からp2までの長さ + p2からp3までの長さ + p3からp1までの長さ
 	public double getPerimeter() {
 		return Math.sqrt(Math.pow(p2.getX() - p1.getX(), 2) + (Math.pow(p2.getY() - p2.getY(), 2)));
 	}

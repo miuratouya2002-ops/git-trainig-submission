@@ -1,4 +1,4 @@
-public class Main8_14 {
+/*public class Main8_14 {
 	//手続き型で作った勇者の冒険プログラム
 	public static void main(String[] args) {
 		int yusha_hp = 100;
@@ -14,3 +14,4 @@ public class Main8_14 {
 		//
 	}
 }
+*/

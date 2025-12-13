@@ -1,4 +1,4 @@
-public class Main8_16 {
+/*public class Main8_16 {
 //仮想世界に勇者とお化けキノコ2匹を生み出す
 	public static void main(String[] args) {
 		Hero h = new Hero();
@@ -20,3 +20,4 @@ public class Main8_16 {
 		h.run();
 	}
 }
+*/

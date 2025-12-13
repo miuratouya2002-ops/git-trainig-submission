@@ -1,4 +1,4 @@
-public class Main8_12 {
+/*public class Main8_12 {
 // 勇者インスタンスを生成して初期値を代入
 	public static void main(String[] args) {
 		// 1.勇者を生成
@@ -9,3 +9,4 @@ public class Main8_12 {
 		System.out.println("勇者" + h.name + "を生み出しました！");
 	}
 }
+*/

@@ -1,4 +1,4 @@
-//public class Main9_03 {
+/*public class Main9_03 {
 	// Sword型フィールドを持つHeroクラス
 	public class Sword {
 		String name;
@@ -17,3 +17,5 @@ public class Hero {
 		System.out.println("敵に5ポイントのダメージをあたえた！");
 	}
 }
+
+*/

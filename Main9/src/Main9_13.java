@@ -1,4 +1,4 @@
-public class Main9_13 {
+/*public class Main9_13 {
 	// コンストラクタをオーバーロードしたクラスの利用
 	public static void main(String[] args) {
 		Hero h1 = new Hero("ミナト");
@@ -7,3 +7,4 @@ public class Main9_13 {
 		System.out.println(h2.name);
 	}
 }
+*/

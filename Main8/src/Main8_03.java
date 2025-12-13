@@ -1,4 +1,5 @@
-//public class Main8_03 {
+/*public class Main8_03 {
 // 中身のない空のHeroクラスを作成
 public class Hero {
 }
+*/

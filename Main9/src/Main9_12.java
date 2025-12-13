@@ -1,4 +1,4 @@
-//public class Main9_12 {
+/*public class Main9_12 {
 // コンストラクタのオーバーロード
 public class Hero {
 	String name;
@@ -20,3 +20,4 @@ public class Hero {
 		this.name = "ダミー";
 	}
 }
+*/

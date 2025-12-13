@@ -1,4 +1,4 @@
-public class Main9_11 {
+/*public class Main9_11 {
 	// newで引数を渡す
 	public static void main(String[] args) {
 		Hero h = new Hero("ミナト");
@@ -7,3 +7,4 @@ public class Main9_11 {
 		System.out.println(h.name);
 	}
 }
+*/

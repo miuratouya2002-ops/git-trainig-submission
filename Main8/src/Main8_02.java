@@ -1,4 +1,4 @@
-//public class Main8_02 {
+/*public class Main8_02 {
 public class Hero {
 // HeroクラスをJavaのコードで表したもの
 	String name;
@@ -9,3 +9,4 @@ public class Hero {
 	public void slip() {…}
 	public void run() {…}
 }
+*/

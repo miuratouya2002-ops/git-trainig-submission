@@ -1,4 +1,4 @@
-//public class Main9_10 {
+/*public class Main9_10 {
 // コンストラクタで引数を追加情報として受け取る
 public class Hero {
 	String name;
@@ -13,3 +13,4 @@ public class Hero {
 		this.hp = 100; //引数の値でnameフィールドを初期化
 	}
 }
+*/

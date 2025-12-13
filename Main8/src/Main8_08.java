@@ -1,4 +1,4 @@
-//public class Main8_08 {
+/*public class Main8_08 {
 //メソッド「座る」「転ぶ」「逃げる」を追加
 public class Hero {
 	String name;
@@ -24,3 +24,4 @@ public class Hero {
 		System.out.println("最後のHPは" + this.hp + "でした");
 	}
 }
+*/

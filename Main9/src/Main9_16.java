@@ -1,4 +1,4 @@
-public class Main9_16 {
+/*public class Main9_16 {
 	// 別のコンストラクタを呼び出す
 	public class Hero {
 		String name;
@@ -12,3 +12,4 @@ public class Main9_16 {
 			this("ダミー");
 	}
 }
+*/

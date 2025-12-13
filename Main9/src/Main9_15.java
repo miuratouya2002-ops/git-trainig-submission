@@ -1,4 +1,4 @@
-//public class Main9_15 {
+/*public class Main9_15 {
 // 別のコンストラクタを呼び出す（エラー）
 public class Hero {
 	String name;
@@ -16,3 +16,4 @@ public class Hero {
 		this("ダミー");
 	}
 }
+*/

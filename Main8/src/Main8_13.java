@@ -1,4 +1,4 @@
-public class Main8_13 {
+/*public class Main8_13 {
 // 仮想世界に勇者を生み出すプログラム
 	public static void main(String[] args) {
 	// 1.勇者を生成
@@ -14,3 +14,4 @@ public class Main8_13 {
 		h.run();
 	}
 }
+*/

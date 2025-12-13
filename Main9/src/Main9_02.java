@@ -1,4 +1,4 @@
-public class Main9_02 {
+/*public class Main9_02 {
 	//2つのHero型変数を利用する
 	public static void main(String[] args) {
 		Hero h1;
@@ -10,3 +10,4 @@ public class Main9_02 {
 		System.out.println(h1.hp);
 	}
 }
+*/

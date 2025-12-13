@@ -55,13 +55,13 @@ public class Rectangle extends Polygon {
 		//メモ↓System.out.printlnで表示
 		//　　　"[長方形(矩形)を描画] 点"を表示
 		//　　　
-		System.out.println("[長方形(矩形)を描画] 点" + p.getX() + p.getY() + "を基準として幅" + this.width + this.height);
+		System.out.println("[長方形(矩形)を描画] 点(" + p.getX() + "," + p.getY() + ")を基準として幅" + this.width + "," + "高さ" + this.height + "の長方形");
 	}
 	
 	//横幅と縦幅を使い、以下の計算式で算出した結果を返す。
 	//( width + height ) * 2
-	//returnで結果を返す
-	//this.widthを
+	
+	//メモ↓returnで結果を返す
 	public double getPerimeter() {
 		return (this.width + this.height) * 2;
 	}

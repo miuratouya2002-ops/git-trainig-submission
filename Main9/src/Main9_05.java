@@ -1,4 +1,4 @@
-//public class Main9_05 {
+/*public class Main9_05 {
 //回復魔法を使えるWizardクラス
 public class Wizard {
 	String name;
@@ -9,3 +9,4 @@ public class Wizard {
 		System.out.println(h.name + "のHPを10回復した！");
 	}
 }
+*/
