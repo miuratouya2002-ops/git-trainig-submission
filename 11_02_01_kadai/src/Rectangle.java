@@ -60,8 +60,10 @@ public class Rectangle extends Polygon {
 	
 	//横幅と縦幅を使い、以下の計算式で算出した結果を返す。
 	//( width + height ) * 2
+	//returnで結果を返す
+	//this.widthを
 	public double getPerimeter() {
-		return this.width + this.height * 2;
+		return (this.width + this.height) * 2;
 	}
 	
 }

@@ -72,7 +72,7 @@ public class Line implements Figure {
 	//　　　"まで"を表示
 
 	public void draw() {
-		System.out.println("[線を描画] 始点" + p1.getX() + p1.getY() + "から終点" + p2.getX() + p2.getY() + "まで");
+		System.out.println("[線を描画] 始点" + p1.getX() + "," + p1.getY() + "から終点" + p2.getX() + "," + p2.getY() + "まで");
 	}
 
 	/**
@@ -88,8 +88,8 @@ public class Line implements Figure {
 	//　　　メソッドはgetPerimeter
 	//　　　引数はなし
 	public double getPerimeter() {
-		double x = p2.getX() - p1.getX();
-		double y = p2.getY() - p1.getY();
+		double d = p2.getX() - p1.getX();
+		double d = p2.getY() - p1.getY();
 		return Math.sqrt(Math.pow(p2.getX() - p1.getX(), 2) + (Math.pow(p2.getY() - p2.getY(), 2)));
 	}
 

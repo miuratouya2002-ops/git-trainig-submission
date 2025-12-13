@@ -5,6 +5,7 @@
 //      継承元がPolygon
 //　　　継承先がTriangle
 //　　　extendsを使って継承させる
+
 public class Triangle extends Polygon {
 
 	//三角形の点1を表すPoint型privateフィールド
@@ -64,5 +65,9 @@ public class Triangle extends Polygon {
 		//　　　それぞれ+
 		System.out.println("[三角形を描画] 点1" + p1.getX() + p1.getY() + "から点2" + p2.getX() + p2.getY() + "点3" + p3.getX()
 				+ p3.getY() + "の三角形");
+	}
+	
+	public double getPerimeter() {
+		return Math.sqrt(Math.pow(p2.getX() - p1.getX(), 2) + (Math.pow(p2.getY() - p2.getY(), 2)));
 	}
 }

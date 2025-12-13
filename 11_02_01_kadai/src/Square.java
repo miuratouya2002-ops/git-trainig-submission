@@ -17,9 +17,11 @@ public class Square extends Rectangle {
 	//メモ↓メソッドはSquare
 	//　　　
 	public Square(int x, int y, int width) {
-		this.p = new Point(x, y);
-		this.width = width;
-		super(Rectangle);
+		//メモ↓ここではインスタンス生成をしない
+		//　　　代入をするとも書いていないからsuperで呼ぶだけ
+		//this.p = new Point(x, y);
+		//this.width = width;
+		super(x, y, width, width);
 
 	}
 
@@ -29,7 +31,9 @@ public class Square extends Rectangle {
 
 	//メモ↓
 	public void draw() {
-		//メモ↓..
-		System.out.println("[正方形を描画]点" + p.getX() + p.getY() + "を基準として幅・高さ" + width.getWidth + "の正方形" )
+		//メモ↓System.out.printlnで表示
+		//　　　"[正方形を描画]点"
+		//　　　pフィールドxとyが入っているから
+		System.out.println("[正方形を描画]点" + p.getX() + "," + p.getY() + "を基準として幅・高さ" + this.width + "の正方形" );
 	}
 }
