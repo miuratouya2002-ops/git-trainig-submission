@@ -19,3 +19,5 @@ public class Main14_7_Hero {
 	}
 
 }
+
+	
