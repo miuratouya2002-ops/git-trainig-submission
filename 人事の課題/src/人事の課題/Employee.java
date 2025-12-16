@@ -2,11 +2,11 @@ package 人事の課題;
 
 //メモ↓abstractでEmployeeを抽象クラスとして宣言する
 //　　　抽象クラスはnewによるインスタンス生成はできない
-//　　　Employee（従業員）は未実装で実装させるのはSales（営業）やEngineer（エンジニア）
+//　　　クラスEmployee（従業員）は未実装で実装させるのはSales（営業）やEngineer（エンジニア）
 public abstract class Employee {
 	//メモ↓nameとAffiliatedCompanyを定義する
-	String name;
-	String AffiliatedCompany;
+	protected String name;
+	protected String AffiliatedCompany;
 
 	//メモ↓nameとAffiliatedCompanyを格納する
 	public Employee(String name, String AffiliatedCompany) {
