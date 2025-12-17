@@ -21,7 +21,7 @@ public abstract class Employee {
 	public abstract void InformationDisplay();
 
 	//メモ↓Nameメソッドを追加する
-	public String Name() {
+	public String getName() {
 		//メモ↓returnで値を返す
 		//　　　nameフィールドの中身を呼び出し元に返している
 		return this.name;
@@ -53,3 +53,12 @@ public abstract class Employee {
 	        System.out.println("名前：" + this.name + " 所属部署：" + this.AffiliatedCompany);
 	    }
 }
+
+
+/*	abstract 従業員クラス（Employee）		
+属性	
+名前・・・社員の名前
+所属部署・・・所属している部署名
+操作	
+abstract 情報表示
+*/
