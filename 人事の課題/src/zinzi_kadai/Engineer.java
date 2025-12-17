@@ -1,4 +1,4 @@
-package 人事の課題;
+package zinzi_kadai;
 
 public class Engineer {
 
