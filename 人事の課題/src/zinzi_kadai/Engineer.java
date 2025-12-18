@@ -1,24 +1,32 @@
 package zinzi_kadai;
 
 public class Engineer extends Employee {
-	//Languageを定義する
+	//メモ↓Languageを定義する
 	protected String Language;
-	//メソッドはEngineer
-	//引数はString name
-	//
-	public Engineer(String Language) {
-		
-		super(Language, "エンジニア");
-		
+
+	//メモ↓メソッドはEngineer
+	//　　　引数はString nameとLanguage
+	public Engineer(String name, String Language) {
+		//メモ↓super(name, "エンジニア")親クラスのコンストラクタを呼び出す
+		super(name, "エンジニア");
+
+		//メモ↓Languageを代入
+		this.Language = Language;
 	}
-	
+
+	//メモ↓戻り値なし
+	//　　　メソッドはdevelopment
+	//　　　引数はなし
 	public void development() {
-		System.out.println({}"で開発を行なった");
+		System.out.println(Language + "で開発を行なった");
 	}
-	
-	public void Information(String , ) {
-		System.out.println({名前}:{所属部署}, {使用言語}:{使用言語});
-		
+
+	//メモ↓戻り値なし
+	//　　　メソッドはInformation
+	//　　　引数なし
+	public void Information() {
+		System.out.println(this.name + ":所属部署" + this.Language + " :使用言語");
+
 	}
 }
 
