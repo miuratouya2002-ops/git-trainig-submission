@@ -1,39 +1,34 @@
+//エンジニア部門
 package zinzi_kadai;
 
+//クラスがEngineer
+//継承元がEmployeeで継承先がEngineer
 public class Engineer extends Employee {
-	//メモ↓Languageを定義する
-	protected String Language;
+	//属性を入れるため、フィールドを定義
+	//language変数に言語(Java,Python)が入る
+	private String language;
 
-	//メモ↓メソッドはEngineer
-	//　　　引数はString nameとLanguage
-	public Engineer(String name, String Language) {
-		//メモ↓super(name, "エンジニア")親クラスのコンストラクタを呼び出す
+	//メソッドがEngineer
+	//String name, String languageが格納
+	public Engineer(String name, String language) {
+		//superで継承元のEmployeeのnameのデータを引き継ぐ
 		super(name, "エンジニア");
-
-		//メモ↓Languageを代入
-		this.Language = Language;
+		//フィールドにlanguageを代入
+		this.language = language;
 	}
 
-	//メモ↓戻り値なし
-	//　　　メソッドはdevelopment
-	//　　　引数はなし
-	public void development() {
-		System.out.println(Language + "で開発を行なった");
+	// メソッド名がdevelop
+	public void develop() {
+		//this.language→Jave+で開発を行なったと表示
+		System.out.println(this.language + "で開発を行なった");
 	}
 
-	//メモ↓戻り値なし
-	//　　　メソッドはInformation
-	//　　　引数なし
-	public void Information() {
-		System.out.println(this.name + ":所属部署" + this.Language + " :使用言語");
-
+	// メソッドがdisplayInfo（表示情報）
+	public void displayInfo() {
+		//出力内容
+		//this.name→名前で佐藤
+		//this.department→部門でエンジニア
+		//this.language→言語でJava
+		System.out.println(this.name + "：" + this.department + " 使用言語：" + this.language);
 	}
 }
-
-/*エンジニアクラス extends 従業員クラス（Engineer）		
-属性	
-	使用言語・・・使用している言語（java, pythonなど）
-操作	
-	開発実施・・・「{使用言語}で開発を行なった」と出力
-	情報表示・・・「{名前}：{所属部署}　使用言語：{使用言語}」と出力
-*/
