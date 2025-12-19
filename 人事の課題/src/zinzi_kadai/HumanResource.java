@@ -29,7 +29,7 @@ public class HumanResource extends Employee {
 	//　　　引数がEmployee emp
 	public void calculateSalary(Employee emp) {
 		//getNameで持ってくる
-		System.out.println(emp.getName() + "の給与を計算します。");
+		System.out.println(emp.getName() + "の給与計算をおこなった。");
 	}
 
 	//メモ↓メソッドがdisplayInfo（表示情報）
