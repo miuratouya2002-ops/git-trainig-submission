@@ -4,7 +4,6 @@ package zinzi_kadai;
 public class Main {
     public static void main(String[] args) {
     	System.out.println("---会社---");
-        System.out.println("BTカンパニーを設立します");
         //
         BT company = new BT();
         //
@@ -28,13 +27,11 @@ public class Main {
         System.out.println("【山田さん(営業)の面接】");
         Sales yamada = new Sales("山田");
         tanaka.conductInterview(false, yamada, company);
-        System.out.println("------------------------------------");
         
         company.displayAllEmployees();
         
         Engineer takahashi = new Engineer("高橋", "Python");
         company.createEmployee(takahashi, suzuki);
-        System.out.println("----------------------------------------------------------------");
 
         company.displayAllEmployees();
         

@@ -38,10 +38,8 @@ public class BT {
 	}
 
 	public void displayAllEmployees() {
-		System.out.println("---従業員---");
 		for (Employee emp : this.employeeList) {
 			emp.displayInfo();
 		}
-		System.out.println("--------------------");
 	}
 }
