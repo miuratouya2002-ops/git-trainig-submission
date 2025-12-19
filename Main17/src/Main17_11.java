@@ -2,7 +2,7 @@
 public class Main17_11 {
 
 	public static void main(String[] args) {
-		Person p = new Person();
+		Main17_11_Person p = new Main17_11_Person();
 		p.setAge(-128);
 	}
 
