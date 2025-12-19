@@ -6,6 +6,7 @@ public class Main17_06 {
 	public static void main(String[] args) {
 		//mainメソッドブロックをfwのスコープにする
 		FileWriter fw = new FileWriter("data.txt");
+		//スコープ内だからfwを利用可能
 		try {
 			fw.write("hello!");
 		} catch (Exception e) {
@@ -13,6 +14,7 @@ public class Main17_06 {
 		} finally {
 			fw.close();
 			//例外IOExceptionをキャッチしていないというエラーがでる
+			//スコープ内だからfwを利用可能
 		}
 	}
 

@@ -1,18 +1,23 @@
-//tryブロック内でnewすると…（エラー）
-import java.io.FileWriter;
-public class Main17_07 {
 
+//後片付け処理もtry-catchする
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Main17_08 {
 	public static void main(String[] args) {
 		FileWriter fw = null;
-		//mainメソッドブロックはスコープのまま
 		try {
-			//tryブロック内でコンストラクタが動作する
 			fw = new FileWriter("data.txt");
 			fw.write("hello!");
 		} catch (Exception e) {
 			System.out.println("何らかの例外が発生しました");
 		} finally {
-			fw.close();
+			try {
+				fw.close();
+			} catch (IOException e) {
+				//空文でclose失敗時には特に何もしない
+				;
+			}
 		}
 	}
 
