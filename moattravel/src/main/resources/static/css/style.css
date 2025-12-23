@@ -76,11 +76,41 @@ footer {
 
 }
 
+
+
 .moattravel-btn:hover {
 
 	opacity: 0.8;
 
 }
+
+
+
+.moattravel-page-link {
+
+	color: #5196a6;
+
+}
+
+
+
+.moattravel-page-link:hover {
+
+	color: #407784;
+
+}
+
+
+
+.moattravel-active {
+
+	background-color: #5196a6 !important;
+
+	border-color: #5196a6 !important;
+
+}
+
+
 
 @media screen and (min-width: 1400px) {
 
@@ -88,6 +118,6 @@ footer {
 
 		max-width: 1200px;
 
-
 	}
+
 }
