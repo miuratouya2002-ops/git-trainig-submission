@@ -68,6 +68,9 @@
 
 						<h1 class="mb-4 text-center">民宿一覧</h1>
 
+
+
+
 						<div class="d-flex justify-content-between align-items-end flex-wrap">
 
 							<form method="get" th:action="@{/admin/houses}" class="mb-3">
@@ -129,7 +132,7 @@
 
 									<td th:text="${house.getPhoneNumber()}"></td>
 
-									<td><a href="#">詳細</a></td>
+									<td><a th:href="@{/admin/houses/__${house.getId()}__}">詳細</a></td>
 
 								</tr>
 
@@ -150,6 +153,7 @@
 									<li class="page-item">
 
 										<span th:if="${housePage.isFirst()}" class="page-link disabled">前</span>
+
 
 										<a th:unless="${housePage.isFirst()}"
 											th:href="@{/admin/houses(page = ${housePage.getNumber() - 1}, keyword = ${keyword})}"
@@ -174,6 +178,7 @@
 
 										<span th:if="${housePage.isLast()}" class="page-link disabled">次</span>
 
+
 										<a th:unless="${housePage.isLast()}"
 											th:href="@{/admin/houses(page = ${housePage.getNumber() + 1}, keyword = ${keyword})}"
 											class="page-link moattravel-page-link">次</a>
@@ -193,6 +198,8 @@
 			</div>
 
 		</main>
+
+
 
 
 
