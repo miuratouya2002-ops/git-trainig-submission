@@ -39,7 +39,7 @@ public class HouseEditForm {
 
 	@Min(value = 1, message = "定員は1人以上に設定してください。")
 
-	private Integet capacity;
+	private Integer capacity;
 
 	@NotBlank(message = "郵便番号を入力してください。")
 
