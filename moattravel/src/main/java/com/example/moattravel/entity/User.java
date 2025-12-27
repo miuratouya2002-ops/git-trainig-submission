@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 import lombok.Data;
 
@@ -19,7 +20,7 @@ import lombok.Data;
 
 public class User {
 
-	@id
+	@Id
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -74,6 +75,3 @@ public class User {
 	private Timestamp updatedAt;
 
 }
-
-
-ｓ
