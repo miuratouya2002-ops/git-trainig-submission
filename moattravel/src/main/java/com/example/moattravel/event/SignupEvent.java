@@ -8,26 +8,20 @@ import lombok.Getter;
 
 @Getter
 
-public class SignupEvent {
+public class SignupEvent extends ApplicationEvent {
 
-	public class SignupEvent extends ApplicationEvent {
+	private User user;
 
-     private User user;
+	private String requestUrl;
 
-     private String requestUrl;        
+	public SignupEvent(Object source, User user, String requestUrl) {
 
- 
+		super(source);
 
-     public SignupEvent(Object source, User user, String requestUrl) {
+		this.user = user;
 
-         super(source);
+		this.requestUrl = requestUrl;
 
-         
-
-         this.user = user;        
-
-         this.requestUrl = requestUrl;
-
-     }
+	}
 
 }

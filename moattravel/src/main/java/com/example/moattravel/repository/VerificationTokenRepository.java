@@ -4,11 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.moattravel.entity.VerificationToken;
 
-public interface VerificationTokenRepository {
+public interface VerificationTokenRepository extends JpaRepository<VerificationToken, Integer> {
 
-	public interface VerificationTokenRepository extends JpaRepository< VerificationToken, Integer> {
-
-     public VerificationToken findByToken(String token);
-
+	public VerificationToken findByToken(String token);
 
 }

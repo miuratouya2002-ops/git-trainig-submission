@@ -55,7 +55,7 @@ public class UserService {
 		user.setRole(role);
 
 		user.setEnabled(true);
-		
+
 		user.setEnabled(false);
 
 		return userRepository.save(user);
@@ -79,20 +79,17 @@ public class UserService {
 		return password.equals(passwordConfirmation);
 
 	}
-	
-	     // ユーザーを有効にする
 
-	     @Transactional
+	// ユーザーを有効にする
 
-	     public void enableUser(User user) {
+	@Transactional
 
-	         user.setEnabled(true); 
+	public void enableUser(User user) {
 
-	         userRepository.save(user);
+		user.setEnabled(true);
 
-	     }    
+		userRepository.save(user);
 
 	}
-
 
 }
