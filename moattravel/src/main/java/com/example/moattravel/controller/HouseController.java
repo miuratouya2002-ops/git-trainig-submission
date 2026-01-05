@@ -53,6 +53,7 @@ public class HouseController {
 
 				housePage = houseRepository.findByNameLikeOrAddressLikeOrderByPriceAsc("%" + keyword + "%",
 						"%" + keyword + "%", pageable);
+
 			} else {
 
 				housePage = houseRepository.findByNameLikeOrAddressLikeOrderByCreatedAtDesc("%" + keyword + "%",
@@ -71,6 +72,7 @@ public class HouseController {
 			} else {
 
 				housePage = houseRepository.findByAddressLikeOrderByCreatedAtDesc("%" + area + "%", pageable);
+
 			}
 
 		} else if (price != null) {
