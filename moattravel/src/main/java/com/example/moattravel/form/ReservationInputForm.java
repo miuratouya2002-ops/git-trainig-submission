@@ -22,24 +22,24 @@ public class ReservationInputForm {
 
 	private Integer numberOfPeople;
 
-	//チェックイン日を取得する
+	// チェックイン日を取得する
 
 	public LocalDate getCheckinDate() {
 
-		String[] checkinDateAndCheckoutDate =
-
-				getFromCheckinDateToCheckoutDate().split("から");
+		String[] checkinDateAndCheckoutDate = getFromCheckinDateToCheckoutDate().split(" から ");
 
 		return LocalDate.parse(checkinDateAndCheckoutDate[0]);
+
 	}
 
-	//チェックアウト日を取得する
+	// チェックアウト日を取得する
 
 	public LocalDate getCheckoutDate() {
 
-		String[] checkinDateAndCheckoutDate = getFromCheckinDateToCheckoutDate().split("から");
+		String[] checkinDateAndCheckoutDate = getFromCheckinDateToCheckoutDate().split(" から ");
 
 		return LocalDate.parse(checkinDateAndCheckoutDate[1]);
+
 	}
 
 }
