@@ -72,10 +72,10 @@ public class StripeService {
 
 								.putMetadata("userId", reservationRegisterForm.getUserId().toString())
 
-								//checkinに変更していなかった
+								//checkinに変更していない
 								.putMetadata("checkinDate", reservationRegisterForm.getCheckinDate())
 
-								//checkoutに変更していなかった
+								//checkoutに変更していない
 								.putMetadata("checkoutDate", reservationRegisterForm.getCheckoutDate())
 
 								.putMetadata("numberOfPeople", reservationRegisterForm.getNumberOfPeople().toString())
