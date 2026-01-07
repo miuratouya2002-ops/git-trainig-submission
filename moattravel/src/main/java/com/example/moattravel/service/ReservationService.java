@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.moattravel.entity.House;
+import com.example.moattravel.entity.Reservation;
 import com.example.moattravel.entity.User;
 import com.example.moattravel.form.ReservationRegisterForm;
 import com.example.moattravel.repository.HouseRepository;
@@ -35,9 +36,9 @@ public class ReservationService {
 
 	public void create(ReservationRegisterForm reservationRegisterForm) {
 
-		com.example.moattravel.entity.Reservation reservation = new REservation();
+		com.example.moattravel.entity.Reservation reservation = new Reservation();
 
-		House house = hosueRepository.getReferenceById(reservationRegisterForm.getHouseId());
+		House house = houseRepository.getReferenceById(reservationRegisterForm.getHouseId());
 
 		User user = userRepository.getReferenceById(reservationRegisterForm.getUserId());
 
