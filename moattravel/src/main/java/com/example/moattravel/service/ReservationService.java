@@ -2,6 +2,7 @@ package com.example.moattravel.service;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.moattravel.entity.House;
 import com.example.moattravel.entity.Reservation;
 import com.example.moattravel.entity.User;
-import com.example.moattravel.form.ReservationRegisterForm;
 import com.example.moattravel.repository.HouseRepository;
 import com.example.moattravel.repository.ReservationRepository;
 import com.example.moattravel.repository.UserRepository;
@@ -31,22 +31,29 @@ public class ReservationService {
 		this.houseRepository = houseRepository;
 		this.userRepository = userRepository;
 
-		//
 	}
 
 	@Transactional
 
-	public void create(ReservationRegisterForm reservationRegisterForm) {
+	public void create(Map<String, String> paymentIntentObject) {
 
-		com.example.moattravel.entity.Reservation reservation = new Reservation();
+		Reservation reservation = new Reservation();
 
-		House house = houseRepository.getReferenceById(reservationRegisterForm.getHouseId());
+		Integer houseId = Integer.valueOf(paymentIntentObject.get("houseId"));
 
-		User user = userRepository.getReferenceById(reservationRegisterForm.getUserId());
+		Integer userId = Integer.valueOf(paymentIntentObject.get("userId"));
 
-		LocalDate checkinDate = LocalDate.parse(reservationRegisterForm.getCheckinDate());
+		House house = houseRepository.getReferenceById(houseId);
 
-		LocalDate checkoutDate = LocalDate.parse(reservationRegisterForm.getCheckoutDate());
+		User user = userRepository.getReferenceById(userId);
+
+		LocalDate checkinDate = LocalDate.parse(paymentIntentObject.get("checkinDate"));
+
+		LocalDate checkoutDate = LocalDate.parse(paymentIntentObject.get("checkoutDate"));
+
+		Integer numberOfPeople = Integer.valueOf(paymentIntentObject.get("numberOfPeople"));
+
+		Integer amount = Integer.valueOf(paymentIntentObject.get("amount"));
 
 		reservation.setHouse(house);
 
@@ -56,9 +63,9 @@ public class ReservationService {
 
 		reservation.setCheckoutDate(checkoutDate);
 
-		reservation.setNumberOfPeople(reservationRegisterForm.getNumberOfPeople());
+		reservation.setNumberOfPeople(numberOfPeople);
 
-		reservation.setAmount(reservationRegisterForm.getAmount());
+		reservation.setAmount(amount);
 
 		reservationRepository.save(reservation);
 

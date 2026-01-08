@@ -59,6 +59,11 @@ public class WebSecurityConfig {
 						.permitAll()
 
 				);
+		
+	)
+		
+
+.csrf().ignoringRequestMatchers("/stripe/webhook");
 
 		return http.build();
 

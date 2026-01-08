@@ -7,8 +7,6 @@ paymentButton.addEventListener('click', () => {
 	stripe.redirectToCheckout({
 
 		sessionId: sessionId
-		
-		
 
 	})
 });
