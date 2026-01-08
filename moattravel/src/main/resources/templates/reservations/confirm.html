@@ -55,132 +55,114 @@
 
 
 
-						<form method="post" th:action="@{/houses/__${house.getId()}__/reservations/create}"
-							th:object="${reservationRegisterForm}">
 
-							<div th:object="${reservationRegisterForm}">
 
-								<input type="hidden" th:field="*{houseId}">
+						<div th:object="${reservationRegisterForm}">
 
-								<input type="hidden" th:field="*{userId}">
+							<div class="container mb-4">
 
-								<input type="hidden" th:field="*{checkinDate}">
+								<div class="row pb-2 mb-2 border-bottom">
 
-								<input type="hidden" th:field="*{checkoutDate}">
+									<div class="col-6">
 
-								<input type="hidden" th:field="*{numberOfPeople}">
+										<span class="fw-bold">チェックイン日</span>
 
-								<input type="hidden" th:field="*{amount}">
+									</div>
 
 
 
-								<div class="container mb-4">
+									<div class="col">
 
-									<div class="row pb-2 mb-2 border-bottom">
-
-										<div class="col-6">
-
-											<span class="fw-bold">チェックイン日</span>
-
-										</div>
-
-
-
-										<div class="col">
-
-											<span th:text="*{checkinDate}"></span>
-
-										</div>
+										<span th:text="*{checkinDate}"></span>
 
 									</div>
 
 								</div>
 
-
-
-								<div class="container mb-4">
-
-									<div class="row pb-2 mb-2 border-bottom">
-
-										<div class="col-6">
-
-											<span class="fw-bold">チェックアウト日</span>
-
-										</div>
+							</div>
 
 
 
-										<div class="col">
+							<div class="container mb-4">
 
-											<span th:text="*{checkoutDate}"></span>
+								<div class="row pb-2 mb-2 border-bottom">
 
-										</div>
+									<div class="col-6">
+
+										<span class="fw-bold">チェックアウト日</span>
+
+									</div>
+
+
+
+									<div class="col">
+
+										<span th:text="*{checkoutDate}"></span>
 
 									</div>
 
 								</div>
 
-
-
-								<div class="container mb-4">
-
-									<div class="row pb-2 mb-2 border-bottom">
-
-										<div class="col-6">
-
-											<span class="fw-bold">宿泊人数</span>
-
-										</div>
+							</div>
 
 
 
-										<div class="col">
+							<div class="container mb-4">
 
-											<span th:text="*{numberOfPeople + '名'}"></span>
+								<div class="row pb-2 mb-2 border-bottom">
 
-										</div>
+									<div class="col-6">
+
+										<span class="fw-bold">宿泊人数</span>
+
+									</div>
+
+
+
+									<div class="col">
+
+										<span th:text="*{numberOfPeople + '名'}"></span>
 
 									</div>
 
 								</div>
 
-
-
-								<div class="container mb-4">
-
-									<div class="row pb-2 mb-2 border-bottom">
-
-										<div class="col-6">
-
-											<span class="fw-bold">宿泊料金</span>
-
-										</div>
+							</div>
 
 
 
-										<div class="col">
+							<div class="container mb-4">
 
-											<span th:text="*{#numbers.formatInteger(amount, 1, 'COMMA') + '円'}"></span>
+								<div class="row pb-2 mb-2 border-bottom">
 
-										</div>
+									<div class="col-6">
+
+										<span class="fw-bold">宿泊料金</span>
+
+									</div>
+
+
+
+									<div class="col">
+
+										<span th:text="*{#numbers.formatInteger(amount, 1, 'COMMA') + '円'}"></span>
 
 									</div>
 
 								</div>
 
+							</div>
 
 
-								<div class="d-flex justify-content-center">
 
-									<button type="submit"
-										class="btn text-white shadow-sm w-100 moattravel-btn">確定する</button>
+							<div class="d-flex justify-content-center">
 
-									<buttonbutton id="" paymentButton"
-										class="btn text-white shadow-sm w-100 moattravel-btn">決済する</buttonbutton>
+								<button id="paymentButton"
+									class="btn text-white shadow-sm w-100 moattravel-btn">決済する</button>
 
-								</div>
+							</div>
 
-						</form>
+						</div>
 
 					</div>
 
@@ -188,15 +170,13 @@
 
 			</div>
 
-	</div>
-
-	</main>
+		</main>
 
 
 
-	<!-- フッター -->
+		<!-- フッター -->
 
-	<div th:replace="~{fragment :: footer}"></div>
+		<div th:replace="~{fragment :: footer}"></div>
 
 	</div>
 
@@ -212,7 +192,7 @@
 
 	</script>
 
-	<script th:src="" @{/js/stripe.js}"></script>">
+	<script th:src="@{/js/stripe.js}"></script>
 
 </body>
 

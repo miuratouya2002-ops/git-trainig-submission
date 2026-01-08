@@ -160,6 +160,8 @@ public class ReservationController {
 
 		model.addAttribute("reservationRegisterForm", reservationRegisterForm);
 
+		model.addAttribute("sessionId", sessionId);
+
 		return "reservations/confirm";
 
 	}
@@ -172,7 +174,7 @@ public class ReservationController {
 	
 		reservationService.create(reservationRegisterForm);
 	
-		return "redirect:/reservations?reservad";
+		return "redirect:/reservations?reserved";
 	
 	}
 	

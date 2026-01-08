@@ -11,10 +11,11 @@ import org.springframework.stereotype.Service;
 import com.example.moattravel.form.ReservationRegisterForm;
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
+import com.stripe.model.Event;
 import com.stripe.model.StripeObject;
 import com.stripe.model.checkout.Session;
 import com.stripe.param.checkout.SessionCreateParams;
-import com.stripe.param.financialconnections.SessionRetrieveParams;
+import com.stripe.param.checkout.SessionRetrieveParams;
 
 @Service
 
@@ -22,7 +23,7 @@ public class StripeService {
 
 	@Value("${stripe.api-key}")
 
-	private String stripeApikey;
+	private String stripeApiKey;
 
 	private final ReservationService reservationService;
 

@@ -40,8 +40,6 @@ public class ReservationInputForm {
 
 		return LocalDate.parse(checkinDateAndCheckoutDate[1]);
 
-		//
-
 	}
 
 }
