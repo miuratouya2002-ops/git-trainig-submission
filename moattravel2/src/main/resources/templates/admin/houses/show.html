@@ -4,10 +4,6 @@
 
 <head>
 
-	<meta charset="UTF-8">
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
 	<div th:replace="~{fragment :: meta}"></div>
 
 	<!-- Bootstrap -->
@@ -23,8 +19,6 @@
 
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
 
-	<link th:href="@{/css/style.css}" rel="stylesheet">
-
 	<div th:replace="~{fragment :: styles}"></div>
 
 	<title>民宿詳細</title>
@@ -36,20 +30,6 @@
 	<div class="moattravel-wrapper">
 
 		<!-- ヘッダー -->
-
-		<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm moattravel-navbar">
-
-			<div class="container moattravel-container">
-
-				<a class="navbar-brand" th:href="@{/}">
-
-					<img class="moattravel-logo me-1" th:src="@{/images/logo.png}" alt="moat Travel">
-
-				</a>
-
-			</div>
-
-		</nav>
 
 		<div th:replace="~{fragment :: header}"></div>
 
