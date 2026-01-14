@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.moattravel2.entity.House;
+import com.example.moattravel2.form.HouseEditForm;
 import com.example.moattravel2.form.HouseRegisterForm;
 import com.example.moattravel2.repository.HouseRepository;
 
@@ -48,22 +49,45 @@ public class HouseService {
 
 		}
 
-		house.setName(houseRegisterForm.getName());
+		house.setName(houseEditForm.getName());
 
-		house.setDescription(houseRegisterForm.getDescription());
+		house.setDescription(houseEditForm.getDescription());
 
-		house.setPrice(houseRegisterForm.getPrice());
+		house.setPrice(houseEditForm.getPrice());
 
-		house.setCapacity(houseRegisterForm.getCapacity());
+		house.setCapacity(houseEditForm.getCapacity());
 
-		house.setPostalCode(houseRegisterForm.getPostalCode());
+		house.setPostalCode(houseEditForm.getPostalCode());
 
-		house.setAddress(houseRegisterForm.getAddress());
+		house.setAddress(houseEditForm.getAddress());
 
-		house.setPhoneNumber(houseRegisterForm.getPhoneNumber());
+		house.setPhoneNumber(houseEditForm.getPhoneNumber());
 
 		houseRepository.save(house);
 
+	}
+
+	@Transactional
+
+	public void update(HouseEditForm houseEditForm) {
+
+		House house = houseRepository.getReferenceById(houseEditForm.getId());
+
+		MultipartFile imageFile = houseEditForm.getImageFile();
+
+		if (!imageFile.isEmpty()) {
+
+			String imageName = imageFile.getOriginalFilename();
+
+			String hashedImageName = generateNewFileName(imageName);
+
+			Path filePath = Paths.get("src/main/resources/static/storage/" + hashedImageName);
+
+			copyImageFile(imageFile, filePath);
+
+			house.setImageName(hashedImageName);
+
+		}
 	}
 
 	// UUIDを使って生成したファイル名を返す
