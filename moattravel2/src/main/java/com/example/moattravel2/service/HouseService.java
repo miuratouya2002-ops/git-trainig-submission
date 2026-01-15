@@ -49,19 +49,19 @@ public class HouseService {
 
 		}
 
-		house.setName(houseEditForm.getName());
+		house.setName(houseRegisterForm.getName());
 
-		house.setDescription(houseEditForm.getDescription());
+		house.setDescription(houseRegisterForm.getDescription());
 
-		house.setPrice(houseEditForm.getPrice());
+		house.setPrice(houseRegisterForm.getPrice());
 
-		house.setCapacity(houseEditForm.getCapacity());
+		house.setCapacity(houseRegisterForm.getCapacity());
 
-		house.setPostalCode(houseEditForm.getPostalCode());
+		house.setPostalCode(houseRegisterForm.getPostalCode());
 
-		house.setAddress(houseEditForm.getAddress());
+		house.setAddress(houseRegisterForm.getAddress());
 
-		house.setPhoneNumber(houseEditForm.getPhoneNumber());
+		house.setPhoneNumber(houseRegisterForm.getPhoneNumber());
 
 		houseRepository.save(house);
 
@@ -88,6 +88,23 @@ public class HouseService {
 			house.setImageName(hashedImageName);
 
 		}
+
+		house.setName(houseEditForm.getName());
+
+		house.setDescription(houseEditForm.getDescription());
+
+		house.setPrice(houseEditForm.getPrice());
+
+		house.setCapacity(houseEditForm.getCapacity());
+
+		house.setPostalCode(houseEditForm.getPostalCode());
+
+		house.setAddress(houseEditForm.getAddress());
+
+		house.setPhoneNumber(houseEditForm.getPhoneNumber());
+
+		houseRepository.save(house);
+
 	}
 
 	// UUIDを使って生成したファイル名を返す
