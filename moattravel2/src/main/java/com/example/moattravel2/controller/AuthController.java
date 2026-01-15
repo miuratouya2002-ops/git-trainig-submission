@@ -1,5 +1,7 @@
 package com.example.moattravel2.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,10 +10,15 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.moattravel2.entity.User;
+import com.example.moattravel2.entity.VerificationToken;
+import com.example.moattravel2.event.SignupEventPublisher;
 import com.example.moattravel2.form.SignupForm;
 import com.example.moattravel2.service.UserService;
+import com.example.moattravel2.service.VerificationTokenService;
 
 @Controller
 
@@ -19,9 +26,19 @@ public class AuthController {
 
 	private final UserService userService;
 
-	public AuthController(UserService userService) {
+	private final SignupEventPublisher signupEventPublisher;
+
+	private final VerificationTokenService verificationTokenService;
+
+	public AuthController(UserService userService, SignupEventPublisher signupEventPublisher,
+			VerificationTokenService verificationTokenService) {
 
 		this.userService = userService;
+
+		this.signupEventPublisher = signupEventPublisher;
+
+		this.verificationTokenService = verificationTokenService;
+
 	}
 
 	@GetMapping("/login")
@@ -45,7 +62,7 @@ public class AuthController {
 	@PostMapping("/signup")
 
 	public String signup(@ModelAttribute @Validated SignupForm signupForm, BindingResult bindingResult,
-			RedirectAttributes redirectAttributes) {
+			RedirectAttributes redirectAttributes, HttpServletRequest httpServletRequest) {
 
 		// メールアドレスが登録済みであれば、BindingResultオブジェクトにエラー内容を追加する
 
@@ -72,11 +89,43 @@ public class AuthController {
 
 		}
 
-		userService.create(signupForm);
+		User createdUser = userService.create(signupForm);
 
-		redirectAttributes.addFlashAttribute("successMessage", "会員登録が完了しました。");
+		String requestUrl = new String(httpServletRequest.getRequestURL());
+
+		signupEventPublisher.publishSignupEvent(createdUser, requestUrl);
+
+		redirectAttributes.addFlashAttribute("successMessage",
+				"ご入力いただいたメールアドレスに認証メールを送信しました。メールに記載されているリンクをクリックし、会員登録を完了してください。");
 
 		return "redirect:/";
+
+	}
+
+	@GetMapping("/signup/verify")
+
+	public String verify(@RequestParam(name = "token") String token, Model model) {
+
+		VerificationToken verificationToken = verificationTokenService.getVerificationToken(token);
+
+		if (verificationToken != null) {
+
+			User user = verificationToken.getUser();
+
+			userService.enableUser(user);
+
+			String successMessage = "会員登録が完了しました。";
+
+			model.addAttribute("successMessage", successMessage);
+
+		} else {
+
+			String errorMessage = "トークンが無効です。";
+
+			model.addAttribute("errorMessage", errorMessage);
+		}
+
+		return "auth/verify";
 
 	}
 
