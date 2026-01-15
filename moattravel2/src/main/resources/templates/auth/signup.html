@@ -83,8 +83,10 @@
 								<div class="col-md-7">
 
 									<div th:if="${#fields.hasErrors('furigana')}" class="text-danger small mb-2"
-										th:errors="*{furigana}"></div <input type="text" class="form-control"
-										th:field="*{furigana}" placeholder="モート タロウ">
+										th:errors="*{furigana}"></div>
+
+									<input type="text" class="form-control" th:field="*{furigana}"
+										placeholder="モート タロウ">
 
 								</div>
 
