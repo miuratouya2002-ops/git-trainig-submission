@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.moattravel2.entity.Role;
 import com.example.moattravel2.entity.User;
 import com.example.moattravel2.form.SignupForm;
+import com.example.moattravel2.form.UserEditForm;
 import com.example.moattravel2.repository.RoleRepository;
 import com.example.moattravel2.repository.UserRepository;
 
@@ -54,11 +55,31 @@ public class UserService {
 
 		user.setRole(role);
 
-		user.setEnabled(true);
-
 		user.setEnabled(false);
 
 		return userRepository.save(user);
+
+	}
+
+	@Transactional
+
+	public void update(UserEditForm userEditForm) {
+
+		User user = userRepository.getReferenceById(userEditForm.getId());
+
+		user.setName(userEditForm.getName());
+
+		user.setFurigana(userEditForm.getFurigana());
+
+		user.setPostalCode(userEditForm.getPostalCode());
+
+		user.setAddress(userEditForm.getAddress());
+
+		user.setPhoneNumber(userEditForm.getPhoneNumber());
+
+		user.setEmail(userEditForm.getEmail());
+
+		userRepository.save(user);
 
 	}
 
@@ -89,6 +110,17 @@ public class UserService {
 		user.setEnabled(true);
 
 		userRepository.save(user);
+
+	}
+
+	// メールアドレスが変更されたかどうかをチェックする
+
+	public boolean isEmailChanged(UserEditForm userEditForm) {
+
+		User currentUser = userRepository.getReferenceById(userEditForm.getId());
+
+		return !userEditForm.getEmail().equals(currentUser.getEmail());
+
 	}
 
 }
