@@ -24,13 +24,13 @@ public class House {
 	private Integer id;
 
 	@Column(name = "name")
-	private string name;
+	private String name;
 
 	@Column(name = "image_name")
-	private string imageName;
+	private String imageName;
 
 	@Column(name = "description")
-	private string description;
+	private String description;
 
 	@Column(name = "price")
 	private Integer price;
@@ -39,13 +39,13 @@ public class House {
 	private Integer capacity;
 
 	@Column(name = "postal_code")
-	private string postalcode;
+	private String postalCode;
 
 	@Column(name = "address")
 	private String address;
 
 	@Column(name = "phone_number")
-	private string phoneNumber;
+	private String phoneNumber;
 
 	@Column(name = "created_at", insertable = false, updatable = false)
 	private Timestamp createdAt;
