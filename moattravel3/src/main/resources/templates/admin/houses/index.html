@@ -124,7 +124,7 @@
 
 									<td th:text="${house.getPhoneNumber()}"></td>
 
-									<td><a href="#">詳細</a></td>
+									<td><a th:href="@{/admin/houses/__${house.getId()}__}">詳細</a></td>
 
 								</tr>
 
@@ -165,6 +165,8 @@
 									</li>
 
 									<li class="page-item">
+
+										<span th:if="${housePage.isLast()}" class="page-link disabled">次</span>
 
 										<a th:unless="${housePage.isLast()}"
 											th:href="@{/admin/houses(page = ${housePage.getNumber() + 1}, keyword = ${keyword})}"
