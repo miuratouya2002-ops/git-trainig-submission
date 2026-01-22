@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.moattravel3.entity.House;
+import com.example.moattravel3.form.HouseRegisterForm;
 import com.example.moattravel3.repository.HouseRepository;
 
 @Controller
@@ -61,6 +62,16 @@ public class AdminHouseController {
 		model.addAttribute("house", house);
 
 		return "admin/houses/show";
+
+	}
+
+	@GetMapping("/register")
+
+	public String register(Model model) {
+
+		model.addAttribute("houseRegisterForm", new HouseRegisterForm());
+
+		return "admin/houses/register";
 
 	}
 
