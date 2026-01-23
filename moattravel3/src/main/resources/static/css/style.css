@@ -129,6 +129,12 @@ footer {
 
 }
 
+.moattravel-dropdown-item:active {
+
+	background-color: #5196a6;
+
+}
+
 @media screen and (min-width: 1400px) {
 
 	.moattravel-container {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 
@@ -225,19 +225,17 @@
 			</div>
 
 		</main>
-		
+
 		<!-- フッター -->
-		
+
 		<div th:replace="~{fragment :: footer}"></div>
-		
-		</div>
-		
-		<div th:replace="~{fragment :: scripts}"></div>
-		
-		<script th:src="@{/js/preview.js}"></script>
-		
-		</body>
-		
-		</html>
-		
-		
+
+	</div>
+
+	<div th:replace="~{fragment :: scripts}"></div>
+
+	<script th:src="@{/js/preview.js}"></script>
+
+</body>
+
+</html>
