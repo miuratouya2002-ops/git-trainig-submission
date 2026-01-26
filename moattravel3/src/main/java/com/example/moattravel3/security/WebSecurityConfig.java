@@ -10,9 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-
 @EnableWebSecurity
-
 @EnableMethodSecurity
 
 public class WebSecurityConfig {
@@ -25,10 +23,11 @@ public class WebSecurityConfig {
 
 				.authorizeHttpRequests((requests) -> requests
 
-						.requestMatchers("/css/**", "/images/**", "/js/**", "/storage/**", "/").permitAll() // すべてのユーザーにアクセスを許可するURL   
-
 						.requestMatchers("/css/**", "/images/**", "/js/**", "/storage/**", "/", "/signup/**")
-						.permitAll() // すべてのユーザーにアクセスを許可するURL   
+						.permitAll() // すべてのユーザーにアクセスを許可するURL
+
+						.requestMatchers("/css/**", "/images/**", "/js/**", "/storage/**", "/", "/signup/**", "/houses")
+						.permitAll() // すべてのユーザーにアクセスを許可するURL
 
 						.requestMatchers("/admin/**").hasRole("ADMIN") // 管理者にのみアクセスを許可するURL
 

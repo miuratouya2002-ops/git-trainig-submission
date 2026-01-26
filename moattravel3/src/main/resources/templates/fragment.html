@@ -41,6 +41,8 @@
 
 <body>
 
+	<!-- ヘッダーの部品化 -->
+
 	<div th:fragment="header" th:remove="tag">
 
 		<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm moattravel-navbar">
@@ -53,8 +55,6 @@
 
 				</a>
 
-
-
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 					aria-expanded="false" aria-label="Toggle navigation">
@@ -62,8 +62,6 @@
 					<span class="navbar-toggler-icon"></span>
 
 				</button>
-
-
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -84,8 +82,8 @@
 						</li>
 
 
-
 						<!-- ログイン済みであれば表示する -->
+
 
 						<li class="nav-item dropdown" sec:authorize="hasRole('ROLE_GENERAL')">
 
@@ -96,9 +94,11 @@
 
 							</a>
 
-
-
 							<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownGeneral">
+
+								<a class="dropdown-item moattravel-dropdown-item" th:href="@{/user}">会員情報</a>
+
+								<div class="dropdown-divider"></div>
 
 								<a class="dropdown-item moattravel-dropdown-item" th:href="@{/logout}"
 									onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -114,8 +114,8 @@
 						</li>
 
 
-
 						<!-- 管理者であれば表示する -->
+
 
 						<li class="nav-item dropdown" sec:authorize="hasRole('ROLE_ADMIN')">
 
@@ -126,17 +126,13 @@
 
 							</a>
 
-
-
 							<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownAdmin">
+
+								<a class="dropdown-item moattravel-dropdown-item" th:href="@{/admin/users}">会員一覧</a>
 
 								<a class="dropdown-item moattravel-dropdown-item" th:href="@{/admin/houses}">民宿一覧</a>
 
-
-
 								<div class="dropdown-divider"></div>
-
-
 
 								<a class="dropdown-item moattravel-dropdown-item" th:href="@{/logout}"
 									onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -158,11 +154,11 @@
 			</div>
 
 		</nav>
-
 	</div>
 
 
 	<!-- フッターの部品化 -->
+
 
 	<div th:fragment="footer" th:remove="tag">
 
