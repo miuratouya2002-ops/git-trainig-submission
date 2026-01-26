@@ -1,4 +1,4 @@
-package com.example.moattravel.controller;
+package com.example.moattravel3.controller;
 
 import java.time.LocalDate;
 
@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.moattravel3.entity.House;
@@ -36,8 +37,6 @@ public class ReservationController {
 	private final HouseRepository houseRepository;
 
 	private final ReservationService reservationService;
-
-	public ReservationController(ReservationRepository reservationRepository) {
 
 	public ReservationController(ReservationRepository reservationRepository, HouseRepository houseRepository,
 			ReservationService reservationService) {
@@ -149,6 +148,16 @@ public class ReservationController {
 		model.addAttribute("reservationRegisterForm", reservationRegisterForm);
 
 		return "reservations/confirm";
+
+	}
+
+	@PostMapping("/houses/{id}/reservations/create")
+
+	public String create(@ModelAttribute ReservationRegisterForm reservationRegisterForm) {
+
+		reservationService.create(reservationRegisterForm);
+
+		return "redirect:/reservations?reserved";
 
 	}
 
