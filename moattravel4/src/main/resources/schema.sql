@@ -58,8 +58,54 @@ CREATE TABLE IF NOT EXISTS users (
 	
 	created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	
+	updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	
+	FOREIGN KEY (role_id) REFERENCES roles (id)
 	
-)
+	);
 	
-)
+	--verification_tokensテーブル
+	
+	CREATE TABLE IF NOT EXISTS verification_tokens (
+		
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		
+		user_id INT NOT NULL UNIQUE,
+		
+		token VARCHAR(255) NOT NULL,
+		
+		created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		
+		updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+		
+		FOREIGN KEY (user_id) REFERENCES users (id)
+		
+	);
+	
+	--meeting_room_idテーブル
+	
+	CREATE TABLE IF NOT EXISTS reservations (
+		
+		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		
+		meeting_room_id INT NOT NULL,
+		
+		user_id INT NOT NULL,
+		
+		checkin_date DATE NOT NULL,
+		
+		checkout_date DATE NOT NULL,
+		
+		number_of_people INT NOT NULL,
+		
+		amount INT NOT NULL,
+		
+		created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		
+		updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+		
+		FOREIGN KEY (meeting_rooms) REFERENCES meeting_room_id (id),
+		
+		FOREIGN KEY (user_id) REFERENCES users (id)
+		
+		);
