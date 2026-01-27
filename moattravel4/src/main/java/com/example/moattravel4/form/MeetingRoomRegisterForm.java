@@ -1,5 +1,5 @@
 package com.example.moattravel4.form;
 
-public class HouseRegisterForm {
+public class MeetingRoomRegisterForm {
 
 }

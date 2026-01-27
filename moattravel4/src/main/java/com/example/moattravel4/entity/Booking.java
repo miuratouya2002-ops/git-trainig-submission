@@ -1,5 +1,6 @@
 package com.example.moattravel4.entity;
 
-public class Reservation {
+//利用予約
+public class Booking {
 
 }

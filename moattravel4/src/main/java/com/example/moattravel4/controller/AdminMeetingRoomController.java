@@ -1,5 +1,5 @@
 package com.example.moattravel4.controller;
 
-public class HouseController {
+public class AdminMeetingRoomController {
 
 }
