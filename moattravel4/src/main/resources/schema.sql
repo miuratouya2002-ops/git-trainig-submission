@@ -12,6 +12,8 @@ CREATE TABLE IF NOT EXISTS meeting_rooms (
     
     capacity INT NOT NULL, -- 定員
     
+    postal_code VARCHAR(50) NOT NULL,
+    
     address VARCHAR(255) NOT NULL, -- 住所
     
     phone_number VARCHAR(50) NOT NULL, -- 電話番号
@@ -52,7 +54,7 @@ CREATE TABLE IF NOT EXISTS users (
 	
 	password VARCHAR(255) NOT NULL,
 	
-	roel_id INT NOT NULL,
+	role_id INT NOT NULL,
 	
 	enabled BOOLEAN NOT NULL,
 	
@@ -104,7 +106,7 @@ CREATE TABLE IF NOT EXISTS users (
 		
 		updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 		
-		FOREIGN KEY (meeting_rooms) REFERENCES meeting_room_id (id),
+		FOREIGN KEY (meeting_room_id) REFERENCES meeting_rooms(id),
 		
 		FOREIGN KEY (user_id) REFERENCES users (id)
 		
