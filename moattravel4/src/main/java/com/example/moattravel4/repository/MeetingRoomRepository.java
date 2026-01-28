@@ -1,5 +1,9 @@
 package com.example.moattravel4.repository;
 
-public class MeetingRoomRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.moattravel4.entity.MeetingRoom;
+
+public interface MeetingRoomRepository extends JpaRepository<MeetingRoom, Integer> {
 
 }
