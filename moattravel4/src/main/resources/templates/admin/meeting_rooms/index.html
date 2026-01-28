@@ -91,19 +91,19 @@
 
 							<tbody>
 
-								<tr th:each="MeetingRoom : ${meeting_rooms}">
+								<tr th:each="meetingRoom : ${meetingRooms}">
 
-									<td th:text="${MeetingRoom.getId()}"></td>
+									<td th:text="${meetingRoom.getId()}"></td>
 
-									<td th:text="${MeetingRoom.getName()}"></td>
-									
-									<td th:text="${MeetingRoom.getPrice() + "円"}"></td>
+									<td th:text="${meetingRoom.getName()}"></td>
 
-									<td th:text="${MeetingRoom.getPostalCode()}"></td>
+									<td th:text="${meetingRoom.getPrice() + '円'}"></td>
 
-									<td th:text="${MeetingRoom.getAddress()}"></td>
+									<td th:text="${meetingRoom.getPostalCode()}"></td>
 
-									<td th:text="${MeetingRoom.getPhoneNumber()}"></td>
+									<td th:text="${meetingRoom.getAddress()}"></td>
+
+									<td th:text="${meetingRoom.getPhoneNumber()}"></td>
 
 									<td><a href="#">詳細</a></td>
 
