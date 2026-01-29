@@ -113,6 +113,48 @@
 
 						</table>
 
+						<!-- ページネーション -->
+
+						<div th:if="${meetingRoomsPage.getTotalPages() > 1}" class="d-flex justify-content-center">
+
+							<nav aria-label="民宿一覧ページ">
+
+								<ul class="pagination">
+
+									<li class="page-item">
+
+										<a th:unless="$meetingRoomsPage.isFirst()}"
+											th:href="@{/admin/meeting_rooms(page = ${meetingRoomsPage.getNumber() - 1})}"
+											class="page-link moattravel-page-link">前</a>
+
+									</li>
+
+									<li th:each="i : ${#numbers.sequence(0, meetingRoomsPage.getTotalPages() - 1)}"
+										class="page-item">
+
+										<span th:if="${i == meetingRoomsPage.getNumber()}"
+											class="page-link active moattravel-active" th:text="${i + 1}"></span>
+
+										<a th:unless="${i == meetingRoomsPage.getNumber()}"
+											th:href="@{/admin/meeting_rooms(page = ${i})}"
+											class="page-link moattravel-page-link" th:text="${i + 1}"></a>
+
+									</li>
+
+									<li class="page-item">
+
+										<a th:unless="${meetingRoomsPage.isLast()}"
+											th:href="@{/admin/meeting_rooms(page = ${meetingRoomsPage.getNumber() + 1})}"
+											class="page-link moattravel-page-link">次</a>
+
+									</li>
+
+								</ul>
+
+							</nav>
+
+						</div>
+
 					</div>
 
 				</div>

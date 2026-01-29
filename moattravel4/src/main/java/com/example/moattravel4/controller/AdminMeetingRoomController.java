@@ -1,7 +1,9 @@
 package com.example.moattravel4.controller;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,11 +27,12 @@ public class AdminMeetingRoomController {
 
 	@GetMapping
 
-	public String index(Model model) {
+	public String index(Model model,
+			@PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable) {
 
-		List<MeetingRoom> meetingRooms = meetingRoomRepository.findAll();
+		Page<MeetingRoom> meetingRoomsPage = meetingRoomRepository.findAll(pageable);
 
-		model.addAttribute("meetingRooms", meetingRooms);
+		model.addAttribute("meetingRoomsPage", meetingRoomsPage);
 
 		return "admin/meeting_rooms/index";
 
