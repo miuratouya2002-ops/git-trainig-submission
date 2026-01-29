@@ -6,6 +6,8 @@ CREATE TABLE IF NOT EXISTS meeting_rooms (
     
     name VARCHAR(50) NOT NULL,  -- 会議室名
     
+    image_name VARCHAR(255), -- 画像
+    
     description VARCHAR(255) NOT NULL, -- 室内の説明（ホワイトボードがあるか、窓際か）
     
     price INT NOT NULL, -- 料金（1日、1時間あたり）

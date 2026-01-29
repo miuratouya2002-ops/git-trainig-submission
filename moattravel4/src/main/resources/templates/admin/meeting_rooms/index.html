@@ -123,7 +123,7 @@
 
 									<li class="page-item">
 
-										<a th:unless="$meetingRoomsPage.isFirst()}"
+										<a th:unless="${meetingRoomsPage.isFirst()}"
 											th:href="@{/admin/meeting_rooms(page = ${meetingRoomsPage.getNumber() - 1})}"
 											class="page-link moattravel-page-link">前</a>
 
