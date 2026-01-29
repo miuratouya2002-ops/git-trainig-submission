@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.moattravel4.entity.MeetingRoom;
+import com.example.moattravel4.form.MeetingRoomRegisterForm;
 import com.example.moattravel4.repository.MeetingRoomRepository;
 
 @Controller
@@ -50,6 +51,30 @@ public class AdminMeetingRoomController {
 
 		return "admin/meeting_rooms/index";
 
+	}
+
+	@GetMapping("/register")
+	public String register(Model model) {
+
+		model.addAttribute("meetingRoomRegisterForm", new MeetingRoomRegisterForm());
+
+		return "admin/meeting_rooms/register";
+
+	}
+
+	@PostMapping("/create")
+	public String create(@ModelAttribute @Validated MeetingRoomRegisterForm meetingRoomRegisterForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+		
+		if (bindingResult, hasErrors()) {
+			
+			return "admin/meeting_rooms/registe";
+			
+			redirectAttributes.addFlashAttribute("successMessage","会議室を登録しました。");
+			
+			return "redirect:/admin/meeting_rooms";
+			
+		}
+		
 	}
 
 }

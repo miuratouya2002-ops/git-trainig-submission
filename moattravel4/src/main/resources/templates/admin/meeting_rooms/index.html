@@ -52,7 +52,8 @@
 						</div>
 
 						<div class="d-flex justify-content-end">
-							<a href="#" class="btn text-white shadow-sm mb-3 moattravel-btn">登録</a>
+							<a th:href="@{/admin/meeting_rooms/register}"
+								class="btn text-white shadow-sm mb-3 moattravel-btn">登録</a>
 						</div>
 
 						<table class="table">
@@ -69,12 +70,11 @@
 								</tr>
 							</thead>
 							<tbody>
-								<!-- ★修正1: meetingRoomsPage に変更 -->
+
 								<tr th:each="meetingRoom : ${meetingRoomsPage}">
 									<td th:text="${meetingRoom.getId()}"></td>
 									<td th:text="${meetingRoom.getName()}"></td>
 
-									<!-- ★修正2: ここに画像表示用の td を追加しました！ -->
 									<td>
 										<img th:if="${meetingRoom.getImageName()}"
 											th:src="@{/storage/__${meetingRoom.getImageName()}__}"
