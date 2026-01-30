@@ -12,23 +12,45 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.moattravel4.entity.MeetingRoom;
 import com.example.moattravel4.form.MeetingRoomEditForm;
+import com.example.moattravel4.form.MeetingRoomRegisterForm;
 import com.example.moattravel4.repository.MeetingRoomRepository;
 
 @Service
 public class MeetingRoomService {
-
 	private final MeetingRoomRepository meetingRoomRepository;
 
 	public MeetingRoomService(MeetingRoomRepository meetingRoomRepository) {
-
 		this.meetingRoomRepository = meetingRoomRepository;
-
 	}
 
+	// 登録機能
 	@Transactional
+	public void create(MeetingRoomRegisterForm meetingRoomRegisterForm) {
+		MeetingRoom meetingRoom = new MeetingRoom();
+		MultipartFile imageFile = meetingRoomRegisterForm.getImageFile();
 
+		if (!imageFile.isEmpty()) {
+			String imageName = imageFile.getOriginalFilename();
+			String hashedImageName = generateNewFileName(imageName);
+			Path filePath = Paths.get("src/main/resources/static/storage/" + hashedImageName);
+			copyImageFile(imageFile, filePath);
+			meetingRoom.setImageName(hashedImageName);
+		}
+
+		meetingRoom.setName(meetingRoomRegisterForm.getName());
+		meetingRoom.setDescription(meetingRoomRegisterForm.getDescription());
+		meetingRoom.setPrice(meetingRoomRegisterForm.getPrice());
+		meetingRoom.setCapacity(meetingRoomRegisterForm.getCapacity());
+		meetingRoom.setPostalCode(meetingRoomRegisterForm.getPostalCode());
+		meetingRoom.setAddress(meetingRoomRegisterForm.getAddress());
+		meetingRoom.setPhoneNumber(meetingRoomRegisterForm.getPhoneNumber());
+
+		meetingRoomRepository.save(meetingRoom);
+	}
+
+	// 更新機能
+	@Transactional
 	public void update(MeetingRoomEditForm meetingRoomEditForm) {
-
 		MeetingRoom meetingRoom = meetingRoomRepository.getReferenceById(meetingRoomEditForm.getId());
 		MultipartFile imageFile = meetingRoomEditForm.getImageFile();
 
@@ -51,6 +73,13 @@ public class MeetingRoomService {
 		meetingRoomRepository.save(meetingRoom);
 	}
 
+	// 削除機能
+	@Transactional
+	public void delete(Integer id) {
+		meetingRoomRepository.deleteById(id);
+	}
+
+	// UUIDを使って生成したファイル名を返す
 	public String generateNewFileName(String fileName) {
 		String[] fileNames = fileName.split("\\.");
 		for (int i = 0; i < fileNames.length - 1; i++) {
@@ -60,6 +89,7 @@ public class MeetingRoomService {
 		return hashedFileName;
 	}
 
+	// 画像ファイルを指定したファイルにコピーする
 	public void copyImageFile(MultipartFile imageFile, Path filePath) {
 		try {
 			Files.copy(imageFile.getInputStream(), filePath);
