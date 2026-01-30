@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+
+	<div th:replace="~{fragment :: meta}"></div>
+
+	<div th:replace="~{fragment :: styles}"></div>
+
+	<title>会議室詳細</title>
+
+</head>
+
+<body>
+
+	<div class="moattravel-wrapper">
+
+		<!-- ヘッダー -->
+
+		<div th:replace="~{fragment :: header}"></div>
+
+		<main>
+
+			<div class="container pt-4 pb-5 moattravel-container">
+
+				<div class="row justify-content-center">
+
+					<div class="col-xl-5 col-lg-6 col-md-8">
+
+						<nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+
+							<ol class="breadcrumb mb-0">
+
+								<li class="breadcrumb-item"><a th:href="@{/admin/meeting_rooms}">会議室一覧</a></li>
+
+								<li class="breadcrumb-item active" aria-current="page">会議室詳細</li>
+
+							</ol>
+
+						</nav>
+
+						<h1 class="mb-4 text-center" th:text="${meetingRoom.getName()}"></h1>
+
+						<div class="d-flex justify-content-end align-items-end mb-3">
+
+							<div>
+
+								<!-- 次のステップで作る編集ページへのリンク -->
+
+								<a th:href="@{/admin/meeting_rooms/__${meetingRoom.getId()}__/edit}">編集</a>
+
+							</div>
+
+						</div>
+
+						<div class="mb-3">
+
+							<img th:if="${meetingRoom.getImageName()}"
+								th:src="@{/storage/__${meetingRoom.getImageName()}__}" class="w-100" alt="会議室画像">
+
+							<img th:unless="${meetingRoom.getImageName()}" th:src="@{/images/noImage.png}" class="w-100"
+								alt="NO IMAGE">
+
+						</div>
+
+						<div class="container mb-4">
+
+							<div class="row pb-2 mb-2 border-bottom">
+
+								<div class="col-4">
+
+									<span class="fw-bold">ID</span>
+
+								</div>
+
+								<div class="col">
+
+									<span th:text="${meetingRoom.getId()}"></span>
+
+								</div>
+
+							</div>
+
+							<div class="row pb-2 mb-2 border-bottom">
+
+								<div class="col-4">
+
+									<span class="fw-bold">会議室名</span>
+
+								</div>
+
+								<div class="col">
+
+									<span th:text="${meetingRoom.getName()}"></span>
+
+								</div>
+
+							</div>
+
+							<div class="row pb-2 mb-2 border-bottom">
+
+								<div class="col-4">
+
+									<span class="fw-bold">説明</span>
+
+								</div>
+
+								<div class="col">
+
+									<span class="moattravel-pre-wrap" th:text="${meetingRoom.getDescription()}"></span>
+
+								</div>
+
+							</div>
+
+							<div class="row pb-2 mb-2 border-bottom">
+
+								<div class="col-4">
+
+									<span class="fw-bold">利用料金</span>
+
+								</div>
+
+								<div class="col">
+
+									<span
+										th:text="${#numbers.formatInteger(meetingRoom.getPrice(), 1, 'COMMA') + '円'}"></span>
+
+								</div>
+
+							</div>
+
+							<div class="row pb-2 mb-2 border-bottom">
+
+								<div class="col-4">
+
+									<span class="fw-bold">定員</span>
+
+								</div>
+
+								<div class="col">
+
+									<span th:text="${meetingRoom.getCapacity() + '人'}"></span>
+
+								</div>
+
+							</div>
+
+							<div class="row pb-2 mb-2 border-bottom">
+
+								<div class="col-4">
+
+									<span class="fw-bold">郵便番号</span>
+
+								</div>
+
+								<div class="col">
+
+									<span th:text="${meetingRoom.getPostalCode()}"></span>
+
+								</div>
+
+							</div>
+
+							<div class="row pb-2 mb-2 border-bottom">
+
+								<div class="col-4">
+
+									<span class="fw-bold">住所</span>
+
+								</div>
+
+								<div class="col">
+
+									<span th:text="${meetingRoom.getAddress()}"></span>
+
+								</div>
+
+							</div>
+
+							<div class="row pb-2 mb-2 border-bottom">
+
+								<div class="col-4">
+
+									<span class="fw-bold">電話番号</span>
+
+								</div>
+
+								<div class="col">
+
+									<span th:text="${meetingRoom.getPhoneNumber()}"></span>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</main>
+
+		<!-- フッター -->
+
+		<div th:replace="~{fragment :: footer}"></div>
+
+	</div>
+
+	<div th:replace="~{fragment :: scripts}"></div>
+
+</body>
+
+</html>

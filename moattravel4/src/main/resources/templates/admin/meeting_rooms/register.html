@@ -1,18 +1,12 @@
-<!DOCTYPE ht<ml>
-
-<html xmlns:th="https://www.thymeleaf.org" 　>
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-
 	<div th:replace="~{fragment :: meta}"></div>
-
-
 
 	<div th:replace="~{fragment :: styles}"></div>
 
-
-
-	<title>民宿登録</title>
+	<title>会議室登録</title>
 
 </head>
 
@@ -23,8 +17,6 @@
 		<!-- ヘッダー -->
 
 		<div th:replace="~{fragment :: header}"></div>
-
-
 
 		<main>
 
@@ -38,22 +30,21 @@
 
 							<ol class="breadcrumb mb-0">
 
-								<li class="breadcrumb-item"><a th:href="@{/admin/houses}">会議室一覧</a></li>
+								<li class="breadcrumb-item"><a th:href="@{/admin/meeting_rooms}">会議室一覧</a></li>
 
-								<li class="breadcrumb-item active" aria-current="page">会議室予約登録</li>
+								<li class="breadcrumb-item active" aria-current="page">会議室登録</li>
 
 							</ol>
 
 						</nav>
 
 
-
 						<h1 class="mb-4 text-center">会議室登録</h1>
 
+						<form method="post" th:action="@{/admin/meeting_rooms/create}"
+							th:object="${meetingRoomRegisterForm}" enctype="multipart/form-data">
 
-
-						<form method="post" th:action="@{/admin/houses/create}" th:object="${houseRegisterForm}"
-							enctype="multipart/form-data">
+							<!-- 会議室名 -->
 
 							<div class="form-group row mb-3">
 
@@ -75,6 +66,7 @@
 							</div>
 
 
+							<!-- 画像ファイル -->
 
 							<div class="form-group row mb-3">
 
@@ -95,19 +87,13 @@
 
 							</div>
 
-
-
-							<!-- 選択された画像の表示場所 -->
-
-							<div class="row" id="imagePreview"></div>
-
-
+							<!-- 説明 -->
 
 							<div class="form-group row mb-3">
 
 								<div class="col-md-4">
 
-									<label for="description" class="col-form-label text-md-left fw-bold">会議室の説明</label>
+									<label for="description" class="col-form-label text-md-left fw-bold">説明</label>
 
 								</div>
 
@@ -123,13 +109,13 @@
 
 							</div>
 
-
+							<!-- 利用料金 -->
 
 							<div class="form-group row mb-3">
 
 								<div class="col-md-4">
 
-									<label for="price" class="col-form-label text-md-left fw-bold">会議室の料金（単位：円）</label>
+									<label for="price" class="col-form-label text-md-left fw-bold">利用料金（単位：円）</label>
 
 								</div>
 
@@ -144,7 +130,7 @@
 
 							</div>
 
-
+							<!-- 定員 -->
 
 							<div class="form-group row mb-3">
 
@@ -165,7 +151,7 @@
 
 							</div>
 
-
+							<!-- 郵便番号 -->
 
 							<div class="form-group row mb-3">
 
@@ -186,7 +172,7 @@
 
 							</div>
 
-
+							<!-- 住所 -->
 
 							<div class="form-group row mb-3">
 
@@ -207,7 +193,7 @@
 
 							</div>
 
-
+							<!-- 電話番号 -->
 
 							<div class="form-group row mb-3">
 
@@ -228,10 +214,6 @@
 
 							</div>
 
-
-
-
-
 							<div class="form-group d-flex justify-content-center my-4">
 
 								<button type="submit" class="btn text-white shadow-sm w-50 moattravel-btn">登録</button>
@@ -248,19 +230,13 @@
 
 		</main>
 
-
-
 		<!-- フッター -->
 
 		<div th:replace="~{fragment :: footer}"></div>
 
 	</div>
 
-
-
 	<div th:replace="~{fragment :: scripts}"></div>
-
-	<script th:src="@{/js/preview.js}"></script>
 
 </body>
 
