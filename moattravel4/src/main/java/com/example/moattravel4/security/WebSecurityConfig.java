@@ -18,10 +18,10 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 				.authorizeHttpRequests((requests) -> requests
-						.requestMatchers("/css/**", "/images/**", "/js/**", "/storage/**", "/").permitAll() // 誰でもアクセスOK
-						.requestMatchers("/admin/**").hasRole("ADMIN") // 管理者のみアクセスOK
-						.anyRequest().authenticated() // それ以外はログインが必要
-				)
+						.requestMatchers("/css/**", "/images/**", "/js/**", "/storage/**", "/", "/signup").permitAll()
+						.requestMatchers("/admin/**").hasRole("ADMIN")
+						.anyRequest().authenticated())
+
 				.formLogin((form) -> form
 						.loginPage("/login") // ログイン画面のURL
 						.loginProcessingUrl("/login") // ログイン処理のパス

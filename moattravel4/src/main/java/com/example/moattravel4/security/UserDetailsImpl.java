@@ -35,7 +35,7 @@ public class UserDetailsImpl implements UserDetails {
 		return authorities;
 	}
 
-	// 以下はアカウントの状態に関する設定（今回はすべてtrueにする）
+	// 以下はアカウントの状態に関する設定
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;

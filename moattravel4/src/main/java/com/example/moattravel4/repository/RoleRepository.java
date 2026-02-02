@@ -6,4 +6,6 @@ import com.example.moattravel4.entity.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Integer> {
 
+	public Role findByName(String name);
+
 }

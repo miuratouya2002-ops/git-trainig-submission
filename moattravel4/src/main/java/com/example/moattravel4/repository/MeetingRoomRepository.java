@@ -10,4 +10,12 @@ public interface MeetingRoomRepository extends JpaRepository<MeetingRoom, Intege
 
 	public Page<MeetingRoom> findByNameLike(String keyword, Pageable pageable);
 
+	// 名称または住所であいまい検索
+	public Page<MeetingRoom> findByNameLikeOrAddressLike(String nameKeyword, String addressKeyword, Pageable pageable);
+
+	// 住所であいまい検索
+	public Page<MeetingRoom> findByAddressLike(String area, Pageable pageable);
+
+	// 指定した価格以下で検索
+	public Page<MeetingRoom> findByPriceLessThanEqual(Integer price, Pageable pageable);
 }

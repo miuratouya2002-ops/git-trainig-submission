@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+	<div th:replace="~{fragment :: styles}"></div>
+	<title>会議室一覧</title>
+</head>
+
+<body>
+	<div class="moattravel-wrapper">
+		<div th:replace="~{fragment :: header}"></div>
+
+		<main>
+			<div class="container moattravel-container pb-5">
+				<div class="row justify-content-center">
+					<nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+						<ol class="breadcrumb mb-0">
+							<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
+							<li class="breadcrumb-item active" aria-current="page">会議室一覧</li>
+						</ol>
+					</nav>
+
+					<div class="col-xl-3 col-lg-4 col-md-12">
+						<!-- キーワード検索 -->
+						<form method="get" th:action="@{/meeting_rooms}" class="w-100 mb-3">
+							<div class="input-group">
+								<input type="text" class="form-control" name="keyword" th:value="${keyword}"
+									placeholder="会議室名・住所">
+								<button type="submit" class="btn text-white shadow-sm moattravel-btn">検索</button>
+							</div>
+						</form>
+
+						<!-- エリア検索 -->
+						<div class="card mb-3">
+							<div class="card-header">
+								エリアから探す
+							</div>
+							<div class="card-body">
+								<form method="get" th:action="@{/meeting_rooms}" class="w-100">
+									<div class="form-group mb-3">
+										<select class="form-control form-select" name="area">
+											<option value="" hidden>選択してください</option>
+											<optgroup label="北海道">
+												<option value="北海道" th:selected="${area == '北海道'}">北海道</option>
+											</optgroup>
+											<optgroup label="首都圏">
+												<option value="東京都" th:selected="${area == '東京都'}">東京都</option>
+												<option value="神奈川県" th:selected="${area == '神奈川県'}">神奈川県</option>
+												<option value="埼玉県" th:selected="${area == '埼玉県'}">埼玉県</option>
+												<option value="千葉県" th:selected="${area == '千葉県'}">千葉県</option>
+											</optgroup>
+											<optgroup label="近畿">
+												<option value="大阪府" th:selected="${area == '大阪府'}">大阪府</option>
+												<option value="京都府" th:selected="${area == '京都府'}">京都府</option>
+												<option value="兵庫県" th:selected="${area == '兵庫県'}">兵庫県</option>
+											</optgroup>
+											<!-- 必要に応じて都道府県を追加してください -->
+										</select>
+									</div>
+									<div class="form-group">
+										<button type="submit"
+											class="btn text-white shadow-sm w-100 moattravel-btn">検索</button>
+									</div>
+								</form>
+							</div>
+						</div>
+
+						<!-- 予算検索 -->
+						<div class="card mb-3">
+							<div class="card-header">
+								1時間あたりの予算から探す
+							</div>
+							<div class="card-body">
+								<form method="get" th:action="@{/meeting_rooms}" class="w-100">
+									<div class="form-group mb-3">
+										<select class="form-control form-select" name="price">
+											<option value="" hidden>選択してください</option>
+											<option value="1000" th:selected="${price == 1000}">1,000円以内</option>
+											<option value="2000" th:selected="${price == 2000}">2,000円以内</option>
+											<option value="3000" th:selected="${price == 3000}">3,000円以内</option>
+											<option value="5000" th:selected="${price == 5000}">5,000円以内</option>
+											<option value="10000" th:selected="${price == 10000}">10,000円以内</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<button type="submit"
+											class="btn text-white shadow-sm w-100 moattravel-btn">検索</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+
+					<!-- 検索結果一覧 -->
+					<div class="col">
+						<div class="d-flex justify-content-between flex-wrap">
+							<p th:if="${meetingRoomPage.getTotalPages() > 1}" class="fs-5 mb-3"
+								th:text="${'検索結果：' + meetingRoomPage.getTotalElements() + '件' + '（' + (meetingRoomPage.getNumber() + 1) + ' / ' + meetingRoomPage.getTotalPages() + ' ページ）'}">
+							</p>
+							<p th:unless="${meetingRoomPage.getTotalPages() > 1}" class="fs-5 mb-3"
+								th:text="${'検索結果：' + meetingRoomPage.getTotalElements() + '件'}"></p>
+						</div>
+
+						<div class="mb-3" th:each="meetingRoom : ${meetingRoomPage}">
+							<!-- 詳細ページへのリンク（次の章で作成します） -->
+							<a href="#" class="link-dark moattravel-card-link">
+								<div class="card h-100">
+									<div class="row g-0">
+										<div class="col-md-4">
+											<img th:if="${meetingRoom.getImageName()}"
+												th:src="@{/storage/__${meetingRoom.getImageName()}__}"
+												class="card-img-top moattravel-horizontal-card-image" alt="会議室画像">
+											<img th:unless="${meetingRoom.getImageName()}"
+												th:src="@{/images/noImage.png}"
+												class="card-img-top moattravel-horizontal-card-image" alt="NO IMAGE">
+										</div>
+										<div class="col-md-8">
+											<div class="card-body">
+												<h3 class="card-title mb-3" th:text="${meetingRoom.getName()}"></h3>
+
+												<hr class="mb-3">
+
+												<p class="card-text mb-2">
+													<span th:text="${meetingRoom.getDescription()}"></span>
+												</p>
+
+												<p class="card-text mb-2">
+													<small class="text-muted"
+														th:text="${'〒' + meetingRoom.getPostalCode()}"></small>
+													<small class="text-muted"
+														th:text="${meetingRoom.getAddress()}"></small>
+												</p>
+
+												<p class="card-text">
+													<span
+														th:text="${#numbers.formatInteger(meetingRoom.getPrice(), 1, 'COMMA') + '円 / 時間'}"></span>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</a>
+						</div>
+
+						<!-- ページネーション -->
+						<div th:if="${meetingRoomPage.getTotalPages() > 1}" class="d-flex justify-content-center">
+							<nav aria-label="会議室一覧ページ">
+								<ul class="pagination">
+									<li class="page-item">
+										<span th:if="${meetingRoomPage.isFirst()}" class="page-link disabled">前</span>
+										<a th:unless="${meetingRoomPage.isFirst()}"
+											th:href="@{/meeting_rooms(page = ${meetingRoomPage.getNumber() - 1}, keyword = ${keyword}, area = ${area}, price = ${price})}"
+											class="page-link moattravel-page-link">前</a>
+									</li>
+									<li th:each="i : ${#numbers.sequence(0, meetingRoomPage.getTotalPages() - 1)}"
+										class="page-item">
+										<span th:if="${i == meetingRoomPage.getNumber()}"
+											class="page-link active moattravel-active" th:text="${i + 1}"></span>
+										<a th:unless="${i == meetingRoomPage.getNumber()}"
+											th:href="@{/meeting_rooms(page = ${i}, keyword = ${keyword}, area = ${area}, price = ${price})}"
+											class="page-link moattravel-page-link" th:text="${i + 1}"></a>
+									</li>
+									<li class="page-item">
+										<span th:if="${meetingRoomPage.isLast()}" class="page-link disabled">次</span>
+										<a th:unless="${meetingRoomPage.isLast()}"
+											th:href="@{/meeting_rooms(page = ${meetingRoomPage.getNumber() + 1}, keyword = ${keyword}, area = ${area}, price = ${price})}"
+											class="page-link moattravel-page-link">次</a>
+									</li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<div th:replace="~{fragment :: footer}"></div>
+	</div>
+	<div th:replace="~{fragment :: scripts}"></div>
+</body>
+
+</html>
