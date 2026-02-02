@@ -87,6 +87,7 @@ public class MeetingRoomController {
 		model.addAttribute("order", order);
 
 		return "meeting_rooms/index";
+
 	}
 
 	@GetMapping("/{id}")
