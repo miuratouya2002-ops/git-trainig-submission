@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+
+	<div th:replace="~{fragment :: styles}"></div>
+
+	<title>会議室詳細</title>
+</head>
+
+<body>
+	<div class="moattravel-wrapper">
+		<!-- ヘッダー -->
+		<div th:replace="~{fragment :: header}"></div>
+
+		<main>
+			<div class="container pt-4 pb-5 moattravel-container">
+				<div class="row justify-content-center">
+					<div class="col-xxl-9 col-xl-10 col-lg-11">
+						<!-- パンくずリスト -->
+						<nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0">
+								<li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
+								<li class="breadcrumb-item"><a th:href="@{/meeting_rooms}">会議室一覧</a></li>
+								<li class="breadcrumb-item active" aria-current="page">会議室詳細</li>
+							</ol>
+						</nav>
+
+						<!-- 会議室名 -->
+						<h1 class="mb-4 text-center" th:text="${meetingRoom.getName()}"></h1>
+
+						<!-- エラーメッセージ表示エリア（予約機能作成時に使用） -->
+						<div th:if="${errorMessage}" class="alert alert-danger">
+							<span th:text="${errorMessage}"></span>
+						</div>
+
+						<!-- 画像 -->
+						<div class="mb-4">
+							<img th:if="${meetingRoom.getImageName()}"
+								th:src="@{/storage/__${meetingRoom.getImageName()}__}" class="w-100" alt="会議室画像">
+							<img th:unless="${meetingRoom.getImageName()}" th:src="@{/images/noImage.png}" class="w-100"
+								alt="NO IMAGE">
+						</div>
+
+						<div class="container">
+							<div class="row">
+								<!-- 左側：詳細情報 -->
+								<div class="col-lg-8 container mb-4">
+									<div class="row pb-2 mb-2 border-bottom">
+										<div class="col-4">
+											<span class="fw-bold">会議室名</span>
+										</div>
+
+										<div class="col">
+											<span th:text="${meetingRoom.getName()}"></span>
+										</div>
+									</div>
+
+									<div class="row pb-2 mb-2 border-bottom">
+										<div class="col-4">
+											<span class="fw-bold">説明</span>
+										</div>
+
+										<div class="col">
+											<span class="moattravel-pre-wrap"
+												th:text="${meetingRoom.getDescription()}"></span>
+										</div>
+									</div>
+
+									<div class="row pb-2 mb-2 border-bottom">
+										<div class="col-4">
+											<span class="fw-bold">料金</span>
+										</div>
+
+										<div class="col">
+											<span
+												th:text="${#numbers.formatInteger(meetingRoom.getPrice(), 1, 'COMMA') + '円 / 時間'}"></span>
+										</div>
+									</div>
+
+									<div class="row pb-2 mb-2 border-bottom">
+										<div class="col-4">
+											<span class="fw-bold">定員</span>
+										</div>
+
+										<div class="col">
+											<span th:text="${meetingRoom.getCapacity() + '人'}"></span>
+										</div>
+									</div>
+
+									<div class="row pb-2 mb-2 border-bottom">
+										<div class="col-4">
+											<span class="fw-bold">郵便番号</span>
+										</div>
+
+										<div class="col">
+											<span th:text="${meetingRoom.getPostalCode()}"></span>
+										</div>
+									</div>
+
+									<div class="row pb-2 mb-2 border-bottom">
+										<div class="col-4">
+											<span class="fw-bold">住所</span>
+										</div>
+
+										<div class="col">
+											<span th:text="${meetingRoom.getAddress()}"></span>
+										</div>
+									</div>
+
+									<div class="row pb-2 mb-2 border-bottom">
+										<div class="col-4">
+											<span class="fw-bold">電話番号</span>
+										</div>
+
+										<div class="col">
+											<span th:text="${meetingRoom.getPhoneNumber()}"></span>
+										</div>
+									</div>
+								</div>
+
+								<!-- 右側：予約フォームエリア -->
+								<div sec:authorize="isAnonymous()" class="col-lg-4 px-0 ps-lg-4 mb-4">
+									<div class="card">
+										<div class="card-body">
+											<p class="card-text">予約するには<a th:href="@{/login}">ログイン</a>が必要です。</p>
+											<button type="submit" class="btn text-white shadow-sm w-100 moattravel-btn"
+												disabled>予約する</button>
+										</div>
+									</div>
+								</div>
+								<!-- ※ログイン時の予約フォームは後の章で追加します -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<!-- フッター -->
+		<div th:replace="~{fragment :: footer}"></div>
+	</div>
+
+	<div th:replace="~{fragment :: scripts}"></div>
+</body>
+
+</html>

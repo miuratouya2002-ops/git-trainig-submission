@@ -18,19 +18,28 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 				.authorizeHttpRequests((requests) -> requests
-						.requestMatchers("/css/**", "/images/**", "/js/**", "/storage/**", "/", "/signup").permitAll()
+						.requestMatchers("/css/**", "/images/**", "/js/**", "/storage/**", "/", "/signup/**",
+								"/meeting_rooms", "/meeting_rooms/{id}")
+						.permitAll()
 						.requestMatchers("/admin/**").hasRole("ADMIN")
-						.anyRequest().authenticated())
+						.anyRequest().authenticated()
+
+				)
 
 				.formLogin((form) -> form
 						.loginPage("/login") // ログイン画面のURL
 						.loginProcessingUrl("/login") // ログイン処理のパス
 						.defaultSuccessUrl("/?loggedIn") // ログイン成功時のリダイレクト先
 						.failureUrl("/login?error") // ログイン失敗時のリダイレクト先
-						.permitAll())
+						.permitAll()
+
+				)
+
 				.logout((logout) -> logout
 						.logoutSuccessUrl("/?loggedOut") // ログアウト時のリダイレクト先
-						.permitAll());
+						.permitAll()
+
+				);
 
 		return http.build();
 	}

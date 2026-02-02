@@ -3,12 +3,19 @@
 
 <head>
 	<div th:replace="~{fragment :: meta}"></div>
+
 	<div th:replace="~{fragment :: styles}"></div>
+
 	<title>会議室一覧</title>
+	
 </head>
 
 <body>
+	
 	<div class="moattravel-wrapper">
+		
+		<!-- ヘッダー -->
+		
 		<div th:replace="~{fragment :: header}"></div>
 
 		<main>
@@ -44,18 +51,24 @@
 											<optgroup label="北海道">
 												<option value="北海道" th:selected="${area == '北海道'}">北海道</option>
 											</optgroup>
-											<optgroup label="首都圏">
+											<optgroup label="関東">
 												<option value="東京都" th:selected="${area == '東京都'}">東京都</option>
 												<option value="神奈川県" th:selected="${area == '神奈川県'}">神奈川県</option>
 												<option value="埼玉県" th:selected="${area == '埼玉県'}">埼玉県</option>
 												<option value="千葉県" th:selected="${area == '千葉県'}">千葉県</option>
+												<option value="茨城県" th:selected="${area == '茨城県'}">茨城県</option>
+												<option value="栃木県" th:selected="${area == '栃木県'}">栃木県</option>
+												<option value="群馬県" th:selected="${area == '群馬県'}">群馬県</option>
 											</optgroup>
-											<optgroup label="近畿">
+											<optgroup label="関西">
 												<option value="大阪府" th:selected="${area == '大阪府'}">大阪府</option>
 												<option value="京都府" th:selected="${area == '京都府'}">京都府</option>
 												<option value="兵庫県" th:selected="${area == '兵庫県'}">兵庫県</option>
+												<option value="奈良県" th:selected="${area == '奈良県'}">奈良県</option>
+												<option value="滋賀県" th:selected="${area == '滋賀県'}">滋賀県</option>
+												<option value="和歌山県" th:selected="${area == '和歌山県'}">和歌山県</option>
 											</optgroup>
-											<!-- 必要に応じて都道府県を追加してください -->
+											<!-- 必要に応じて他の都道府県も追加してください -->
 										</select>
 									</div>
 									<div class="form-group">
@@ -79,8 +92,8 @@
 											<option value="1000" th:selected="${price == 1000}">1,000円以内</option>
 											<option value="2000" th:selected="${price == 2000}">2,000円以内</option>
 											<option value="3000" th:selected="${price == 3000}">3,000円以内</option>
+											<option value="4000" th:selected="${price == 4000}">4,000円以内</option>
 											<option value="5000" th:selected="${price == 5000}">5,000円以内</option>
-											<option value="10000" th:selected="${price == 10000}">10,000円以内</option>
 										</select>
 									</div>
 									<div class="form-group">
@@ -92,7 +105,6 @@
 						</div>
 					</div>
 
-					<!-- 検索結果一覧 -->
 					<div class="col">
 						<div class="d-flex justify-content-between flex-wrap">
 							<p th:if="${meetingRoomPage.getTotalPages() > 1}" class="fs-5 mb-3"
@@ -100,11 +112,23 @@
 							</p>
 							<p th:unless="${meetingRoomPage.getTotalPages() > 1}" class="fs-5 mb-3"
 								th:text="${'検索結果：' + meetingRoomPage.getTotalElements() + '件'}"></p>
+
+							<!-- 並べ替えフォーム -->
+							<form method="get" th:action="@{/meeting_rooms}" class="mb-3 moattravel-sort-box">
+								<input th:if="${keyword}" type="hidden" name="keyword" th:value="${keyword}">
+								<input th:if="${area}" type="hidden" name="area" th:value="${area}">
+								<input th:if="${price}" type="hidden" name="price" th:value="${price}">
+								<select class="form-select form-select-sm" name="order" onChange="this.form.submit();">
+									<option value="createdAtDesc"
+										th:selected="${order == 'createdAtDesc' || order == null}">新着順</option>
+									<option value="priceAsc" th:selected="${order == 'priceAsc'}">料金が安い順</option>
+								</select>
+							</form>
 						</div>
 
 						<div class="mb-3" th:each="meetingRoom : ${meetingRoomPage}">
-							<!-- 詳細ページへのリンク（次の章で作成します） -->
-							<a href="#" class="link-dark moattravel-card-link">
+							<a th:href="@{/meeting_rooms/__${meetingRoom.getId()}__}"
+								class="link-dark moattravel-card-link">
 								<div class="card h-100">
 									<div class="row g-0">
 										<div class="col-md-4">
@@ -143,14 +167,13 @@
 							</a>
 						</div>
 
-						<!-- ページネーション -->
 						<div th:if="${meetingRoomPage.getTotalPages() > 1}" class="d-flex justify-content-center">
 							<nav aria-label="会議室一覧ページ">
 								<ul class="pagination">
 									<li class="page-item">
 										<span th:if="${meetingRoomPage.isFirst()}" class="page-link disabled">前</span>
 										<a th:unless="${meetingRoomPage.isFirst()}"
-											th:href="@{/meeting_rooms(page = ${meetingRoomPage.getNumber() - 1}, keyword = ${keyword}, area = ${area}, price = ${price})}"
+											th:href="@{/meeting_rooms(page = ${meetingRoomPage.getNumber() - 1}, keyword = ${keyword}, area = ${area}, price = ${price}, order = ${order})}"
 											class="page-link moattravel-page-link">前</a>
 									</li>
 									<li th:each="i : ${#numbers.sequence(0, meetingRoomPage.getTotalPages() - 1)}"
@@ -158,13 +181,13 @@
 										<span th:if="${i == meetingRoomPage.getNumber()}"
 											class="page-link active moattravel-active" th:text="${i + 1}"></span>
 										<a th:unless="${i == meetingRoomPage.getNumber()}"
-											th:href="@{/meeting_rooms(page = ${i}, keyword = ${keyword}, area = ${area}, price = ${price})}"
+											th:href="@{/meeting_rooms(page = ${i}, keyword = ${keyword}, area = ${area}, price = ${price}, order = ${order})}"
 											class="page-link moattravel-page-link" th:text="${i + 1}"></a>
 									</li>
 									<li class="page-item">
 										<span th:if="${meetingRoomPage.isLast()}" class="page-link disabled">次</span>
 										<a th:unless="${meetingRoomPage.isLast()}"
-											th:href="@{/meeting_rooms(page = ${meetingRoomPage.getNumber() + 1}, keyword = ${keyword}, area = ${area}, price = ${price})}"
+											th:href="@{/meeting_rooms(page = ${meetingRoomPage.getNumber() + 1}, keyword = ${keyword}, area = ${area}, price = ${price}, order = ${order})}"
 											class="page-link moattravel-page-link">次</a>
 									</li>
 								</ul>
@@ -175,8 +198,10 @@
 			</div>
 		</main>
 
+		<!-- フッター -->
 		<div th:replace="~{fragment :: footer}"></div>
 	</div>
+
 	<div th:replace="~{fragment :: scripts}"></div>
 </body>
 

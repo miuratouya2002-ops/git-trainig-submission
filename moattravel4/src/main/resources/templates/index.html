@@ -1,44 +1,110 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
-<head>
-	<div th:replace="~{fragment :: meta}"></div>
-	<div th:replace="~{fragment :: styles}"></div>
-	<title>会議室予約システム</title>
-</head>
-
-<body>
-	<div class="moattravel-wrapper">
-		<!-- ヘッダー -->
-		<div th:replace="~{fragment :: header}"></div>
-
-		<main>
-			<div class="container pt-4 pb-5 moattravel-container">
-				<!-- ログイン成功メッセージ -->
-				<div th:if="${param.loggedIn}" class="alert alert-info">
-					ログインしました。
-				</div>
-				<!-- ログアウト完了メッセージ -->
-				<div th:if="${param.loggedOut}" class="alert alert-info">
-					ログアウトしました。
-				</div>
-
-				<div class="text-center">
-					<h1 class="mb-4">ようこそ！会議室予約システムへ</h1>
-					<p>ここはトップページです。</p>
-
-					<!-- 管理者であれば管理画面へのリンクを表示 -->
-					<div sec:authorize="hasRole('ROLE_ADMIN')">
-						<a th:href="@{/admin/meeting_rooms}" class="btn moattravel-btn text-white">管理者用：会議室管理へ</a>
-					</div>
-				</div>
-			</div>
-		</main>
-
-		<!-- フッター -->
-		<div th:replace="~{fragment :: footer}"></div>
-	</div>
-	<div th:replace="~{fragment :: scripts}"></div>
-</body>
-
+    <head>
+        <div th:replace="~{fragment :: meta}"></div>   
+             
+        <div th:replace="~{fragment :: styles}"></div>
+        
+        <title>会議室予約システム</title>	
+    </head>
+    <body>
+        <div class="moattravel-wrapper">
+            <!-- ヘッダー -->
+            <div th:replace="~{fragment :: header}"></div>
+            
+            <main>
+                <div class="container pt-4 pb-5 moattravel-container">
+                    <!-- ログイン・ログアウト等のメッセージ表示 -->
+                    <div th:if="${param.loggedIn}" class="alert alert-info">
+                        ログインしました。
+                    </div>  
+                    <div th:if="${param.loggedOut}" class="alert alert-info">
+                        ログアウトしました。
+                    </div>
+                    <div th:if="${successMessage}" class="alert alert-info">
+                        <span th:text="${successMessage}"></span>
+                    </div> 
+                    
+                    <!-- 検索フォーム -->
+                     <div class="d-flex justify-content-center">                                            
+                         <form method="get" th:action="@{/meeting_rooms}" class="mb-5 moattravel-search-form">
+                             <div class="input-group">
+                                 <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="会議室名・住所">
+                                 <button type="submit" class="btn text-white shadow-sm moattravel-btn">検索</button> 
+                             </div>               
+                         </form>                        
+                     </div>                                                                                                  
+                                                      
+                     <!-- 新着会議室 -->
+                     <h2 class="text-center mb-3">新着</h2>
+                     <div class="row row-cols-lg-5 row-cols-2 g-3 mb-5">                                        
+                         <div class="col" th:each="newMeetingRoom : ${newMeetingRooms}">
+                             <a th:href="@{/meeting_rooms/__${newMeetingRoom.getId()}__}" class="link-dark moattravel-card-link">
+                                 <div class="card h-100">                                                                        
+                                     <img th:if="${newMeetingRoom.getImageName()}" th:src="@{/storage/__${newMeetingRoom.getImageName()}__}" class="card-img-top moattravel-vertical-card-image" alt="会議室画像">                                     
+                                     <img th:unless="${newMeetingRoom.getImageName()}" th:src="@{/images/noImage.png}" class="card-img-top moattravel-vertical-card-image" alt="NO IMAGE">                                                                                                                        
+                                     <div class="card-body">                                    
+                                         <h3 class="card-title" th:text="${newMeetingRoom.getName()}"></h3>
+                                         <p class="card-text mb-1">
+                                             <small class="text-muted" th:text="${newMeetingRoom.getAddress()}"></small>                                            
+                                         </p>
+                                         <p class="card-text">
+                                             <span th:text="${#numbers.formatInteger(newMeetingRoom.getPrice(), 1, 'COMMA') + '円 / 時間'}"></span>                                            
+                                         </p>                                    
+                                     </div>
+                                 </div>    
+                             </a>            
+                         </div>                                               
+                     </div>
+                     
+                     <!-- エリアから探す -->
+                     <div class="row justify-content-center">
+                         <div class="col-xl-5 col-lg-6 col-md-8">                    
+                     
+                             <h2 class="text-center mb-3">エリアから探す</h2>                                        
+                              
+                             <table class="table">
+                                 <tbody>                                                     
+                                     <tr>
+                                         <th>北海道</th>
+                                         <td>
+                                             <a th:href="@{/meeting_rooms?area=北海道}">北海道</a>
+                                         </td>                                     
+                                     </tr>  
+                                     <tr>
+                                         <th>関東</th>
+                                         <td>
+                                             <a th:href="@{/meeting_rooms?area=東京都}" class="me-2">東京都</a>
+                                             <a th:href="@{/meeting_rooms?area=神奈川県}" class="me-2">神奈川県</a>
+                                             <a th:href="@{/meeting_rooms?area=埼玉県}" class="me-2">埼玉県</a>
+                                             <a th:href="@{/meeting_rooms?area=千葉県}" class="me-2">千葉県</a>
+                                             <a th:href="@{/meeting_rooms?area=茨城県}" class="me-2">茨城県</a>
+                                             <a th:href="@{/meeting_rooms?area=栃木県}" class="me-2">栃木県</a>
+                                             <a th:href="@{/meeting_rooms?area=群馬県}">群馬県</a>
+                                         </td>                                     
+                                     </tr>  
+                                     <tr>
+                                         <th>関西</th>
+                                         <td>
+                                             <a th:href="@{/meeting_rooms?area=大阪府}" class="me-2">大阪府</a>
+                                             <a th:href="@{/meeting_rooms?area=京都府}" class="me-2">京都府</a>
+                                             <a th:href="@{/meeting_rooms?area=兵庫県}" class="me-2">兵庫県</a>
+                                             <a th:href="@{/meeting_rooms?area=奈良県}" class="me-2">奈良県</a>
+                                             <a th:href="@{/meeting_rooms?area=滋賀県}" class="me-2">滋賀県</a>
+                                             <a th:href="@{/meeting_rooms?area=和歌山県}">和歌山県</a>
+                                         </td>                                     
+                                     </tr>
+                                 </tbody>
+                             </table>  
+                         </div>
+                     </div>                               
+                </div>
+            </main>
+            
+            <!-- フッター -->
+            <div th:replace="~{fragment :: footer}"></div>
+        </div>    
+        
+        <div th:replace="~{fragment :: scripts}"></div>  
+    </body>
 </html>

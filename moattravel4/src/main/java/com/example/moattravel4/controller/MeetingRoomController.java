@@ -1,5 +1,7 @@
 package com.example.moattravel4.controller;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -7,6 +9,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,26 +29,78 @@ public class MeetingRoomController {
 	public String index(@RequestParam(name = "keyword", required = false) String keyword,
 			@RequestParam(name = "area", required = false) String area,
 			@RequestParam(name = "price", required = false) Integer price,
+			@RequestParam(name = "order", required = false) String order,
 			@PageableDefault(page = 0, size = 10, sort = "id", direction = Direction.ASC) Pageable pageable,
 			Model model) {
+
 		Page<MeetingRoom> meetingRoomPage;
 
 		if (keyword != null && !keyword.isEmpty()) {
-			meetingRoomPage = meetingRoomRepository.findByNameLikeOrAddressLike("%" + keyword + "%",
-					"%" + keyword + "%", pageable);
+
+			if (order != null && order.equals("priceAsc")) {
+				meetingRoomPage = meetingRoomRepository.findByNameLikeOrAddressLikeOrderByPriceAsc("%" + keyword + "%",
+						"%" + keyword + "%", pageable);
+
+			} else {
+				meetingRoomPage = meetingRoomRepository.findByNameLikeOrAddressLikeOrderByCreatedAtDesc(
+						"%" + keyword + "%", "%" + keyword + "%", pageable);
+
+			}
+
 		} else if (area != null && !area.isEmpty()) {
-			meetingRoomPage = meetingRoomRepository.findByAddressLike("%" + area + "%", pageable);
+
+			if (order != null && order.equals("priceAsc")) {
+				meetingRoomPage = meetingRoomRepository.findByAddressLikeOrderByPriceAsc("%" + area + "%", pageable);
+
+			} else {
+				meetingRoomPage = meetingRoomRepository.findByAddressLikeOrderByCreatedAtDesc("%" + area + "%",
+						pageable);
+
+			}
+
 		} else if (price != null) {
-			meetingRoomPage = meetingRoomRepository.findByPriceLessThanEqual(price, pageable);
+
+			if (order != null && order.equals("priceAsc")) {
+				meetingRoomPage = meetingRoomRepository.findByPriceLessThanEqualOrderByPriceAsc(price, pageable);
+
+			} else {
+				meetingRoomPage = meetingRoomRepository.findByPriceLessThanEqualOrderByCreatedAtDesc(price, pageable);
+
+			}
+
 		} else {
-			meetingRoomPage = meetingRoomRepository.findAll(pageable);
+
+			if (order != null && order.equals("priceAsc")) {
+				meetingRoomPage = meetingRoomRepository.findAllByOrderByPriceAsc(pageable);
+
+			} else {
+				meetingRoomPage = meetingRoomRepository.findAllByOrderByCreatedAtDesc(pageable);
+
+			}
+
 		}
 
 		model.addAttribute("meetingRoomPage", meetingRoomPage);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("area", area);
 		model.addAttribute("price", price);
+		model.addAttribute("order", order);
 
 		return "meeting_rooms/index";
+	}
+
+	@GetMapping("/{id}")
+	public String show(@PathVariable(name = "id") Integer id, Model model) {
+		Optional<MeetingRoom> meetingRoomOpt = meetingRoomRepository.findById(id);
+
+		// データが存在する場合のみ画面に渡す
+		if (meetingRoomOpt.isPresent()) {
+			model.addAttribute("meetingRoom", meetingRoomOpt.get());
+			return "meeting_rooms/show";
+
+		} else {
+			// データがない場合は一覧に戻る
+			return "redirect:/meeting_rooms";
+		}
 	}
 }
