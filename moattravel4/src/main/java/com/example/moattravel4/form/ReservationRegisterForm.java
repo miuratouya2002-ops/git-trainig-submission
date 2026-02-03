@@ -1,5 +1,20 @@
 package com.example.moattravel4.form;
 
-public class ReservationRegisterForm {
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
+@AllArgsConstructor
+public class ReservationRegisterForm {
+	private Integer meetingRoomId;
+
+	private Integer userId;
+
+	private String checkinDate;
+
+	private String checkoutDate;
+
+	private Integer numberOfPeople;
+
+	private Integer amount;
 }

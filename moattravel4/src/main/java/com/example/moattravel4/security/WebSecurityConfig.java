@@ -18,27 +18,36 @@ public class WebSecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 				.authorizeHttpRequests((requests) -> requests
-						.requestMatchers("/css/**", "/images/**", "/js/**", "/storage/**", "/", "/signup/**",
-								"/meeting_rooms", "/meeting_rooms/{id}")
-						.permitAll()
-						.requestMatchers("/admin/**").hasRole("ADMIN")
-						.anyRequest().authenticated()
+						.requestMatchers(
+								"/css/**",
+								"/images/**",
+								"/js/**",
+								"/storage/**",
+								"/",
+								"/signup/**",
+								"/meeting_rooms", // 会議室一覧
+								"/meeting_rooms/{id}", // 会議室詳細
+								"/stripe/webhook", // StripeのWebhook
 
+								//permitAllはすべてのユーザー
+
+								"/favicon.ico", // ブラウザが自動リクエストするアイコン
+								"/error" // エラーページ
+						).permitAll()
+						.requestMatchers("/admin/**").hasRole("ADMIN") // 管理者専用
+						.anyRequest().authenticated() // それ以外はログイン必須
 				)
-
 				.formLogin((form) -> form
-						.loginPage("/login") // ログイン画面のURL
-						.loginProcessingUrl("/login") // ログイン処理のパス
-						.defaultSuccessUrl("/?loggedIn") // ログイン成功時のリダイレクト先
-						.failureUrl("/login?error") // ログイン失敗時のリダイレクト先
-						.permitAll()
-
-				)
-
+						.loginPage("/login") // ログインページのURL
+						.loginProcessingUrl("/login") // ログインフォームの送信先URL
+						.defaultSuccessUrl("/?loggedIn") // ログイン成功時のリダイレクト先URL
+						.failureUrl("/login?error") // ログイン失敗時のリダイレクト先URL
+						.permitAll())
 				.logout((logout) -> logout
-						.logoutSuccessUrl("/?loggedOut") // ログアウト時のリダイレクト先
-						.permitAll()
-
+						.logoutSuccessUrl("/?loggedOut") // ログアウト時のリダイレクト先URL
+						.permitAll())
+				.csrf((csrf) -> csrf
+						.ignoringRequestMatchers("/stripe/webhook") // StripeのWebhookはCSRFチェックを除外
 				);
 
 		return http.build();
