@@ -64,7 +64,7 @@ public class UserController {
 			RedirectAttributes redirectAttributes) {
 		// メールアドレスが変更されており、かつ既に登録済みであればエラー
 		if (userService.isEmailRegistered(userEditForm.getEmail())) {
-			// 自分のメールアドレスと同じならOK（変更なし）、他人のと被ったらNG
+			// 自分のメールアドレスと同じならOK（変更なし）、他人のと被ったらエラー
 			User currentUser = userRepository.getReferenceById(userEditForm.getId());
 			if (!currentUser.getEmail().equals(userEditForm.getEmail())) {
 				FieldError fieldError = new FieldError(bindingResult.getObjectName(), "email", "すでに登録済みのメールアドレスです。");

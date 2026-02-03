@@ -56,7 +56,7 @@ public class WebSecurityConfig {
 
 				)
 
-				.csrf().ignoringRequestMatchers("/stripe/webhook");
+				.csrf(csrf -> csrf.ignoringRequestMatchers("/stripe/webhook"));
 
 		return http.build();
 

@@ -2,6 +2,7 @@ package com.example.moattravel4.service;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,21 +28,15 @@ public class ReservationService {
 		this.userRepository = userRepository;
 	}
 
-	// 予約情報を登録するメソッド
+	// フォームから直接登録する場合のメソッド
 	@Transactional
 	public void create(ReservationRegisterForm reservationRegisterForm) {
 		Reservation reservation = new Reservation();
-
-		// 会議室情報を取得 (MeetingRoomRepositoryを使用)
 		MeetingRoom meetingRoom = meetingRoomRepository.getReferenceById(reservationRegisterForm.getMeetingRoomId());
-
 		User user = userRepository.getReferenceById(reservationRegisterForm.getUserId());
-
-		// 日付データを文字列からLocalDate型に変換
 		LocalDate checkinDate = LocalDate.parse(reservationRegisterForm.getCheckinDate());
 		LocalDate checkoutDate = LocalDate.parse(reservationRegisterForm.getCheckoutDate());
 
-		// エンティティに値をセット
 		reservation.setMeetingRoom(meetingRoom);
 		reservation.setUser(user);
 		reservation.setCheckinDate(checkinDate);
@@ -49,7 +44,32 @@ public class ReservationService {
 		reservation.setNumberOfPeople(reservationRegisterForm.getNumberOfPeople());
 		reservation.setAmount(reservationRegisterForm.getAmount());
 
-		// データベースに保存
+		reservationRepository.save(reservation);
+	}
+
+	// Stripeからの決済情報を使って予約を登録するメソッド
+	@Transactional
+	public void create(Map<String, String> paymentIntentObject) {
+		Reservation reservation = new Reservation();
+
+		Integer meetingRoomId = Integer.valueOf(paymentIntentObject.get("meetingRoomId"));
+		Integer userId = Integer.valueOf(paymentIntentObject.get("userId"));
+
+		MeetingRoom meetingRoom = meetingRoomRepository.getReferenceById(meetingRoomId);
+		User user = userRepository.getReferenceById(userId);
+
+		LocalDate checkinDate = LocalDate.parse(paymentIntentObject.get("checkinDate"));
+		LocalDate checkoutDate = LocalDate.parse(paymentIntentObject.get("checkoutDate"));
+		Integer numberOfPeople = Integer.valueOf(paymentIntentObject.get("numberOfPeople"));
+		Integer amount = Integer.valueOf(paymentIntentObject.get("amount"));
+
+		reservation.setMeetingRoom(meetingRoom);
+		reservation.setUser(user);
+		reservation.setCheckinDate(checkinDate);
+		reservation.setCheckoutDate(checkoutDate);
+		reservation.setNumberOfPeople(numberOfPeople);
+		reservation.setAmount(amount);
+
 		reservationRepository.save(reservation);
 	}
 
