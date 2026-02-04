@@ -1,110 +1,166 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <head>
-        <div th:replace="~{fragment :: meta}"></div>   
-             
-        <div th:replace="~{fragment :: styles}"></div>
-        
-        <title>会議室予約システム</title>	
-    </head>
-    <body>
-        <div class="moattravel-wrapper">
-            <!-- ヘッダー -->
-            <div th:replace="~{fragment :: header}"></div>
-            
-            <main>
-                <div class="container pt-4 pb-5 moattravel-container">
-                    <!-- ログイン・ログアウト等のメッセージ表示 -->
-                    <div th:if="${param.loggedIn}" class="alert alert-info">
-                        ログインしました。
-                    </div>  
-                    <div th:if="${param.loggedOut}" class="alert alert-info">
-                        ログアウトしました。
-                    </div>
-                    <div th:if="${successMessage}" class="alert alert-info">
-                        <span th:text="${successMessage}"></span>
-                    </div> 
-                    
-                    <!-- 検索フォーム -->
-                     <div class="d-flex justify-content-center">                                            
-                         <form method="get" th:action="@{/meeting_rooms}" class="mb-5 moattravel-search-form">
-                             <div class="input-group">
-                                 <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="会議室名・住所">
-                                 <button type="submit" class="btn text-white shadow-sm moattravel-btn">検索</button> 
-                             </div>               
-                         </form>                        
-                     </div>                                                                                                  
-                                                      
-                     <!-- 新着会議室 -->
-                     <h2 class="text-center mb-3">新着</h2>
-                     <div class="row row-cols-lg-5 row-cols-2 g-3 mb-5">                                        
-                         <div class="col" th:each="newMeetingRoom : ${newMeetingRooms}">
-                             <a th:href="@{/meeting_rooms/__${newMeetingRoom.getId()}__}" class="link-dark moattravel-card-link">
-                                 <div class="card h-100">                                                                        
-                                     <img th:if="${newMeetingRoom.getImageName()}" th:src="@{/storage/__${newMeetingRoom.getImageName()}__}" class="card-img-top moattravel-vertical-card-image" alt="会議室画像">                                     
-                                     <img th:unless="${newMeetingRoom.getImageName()}" th:src="@{/images/noImage.png}" class="card-img-top moattravel-vertical-card-image" alt="NO IMAGE">                                                                                                                        
-                                     <div class="card-body">                                    
-                                         <h3 class="card-title" th:text="${newMeetingRoom.getName()}"></h3>
-                                         <p class="card-text mb-1">
-                                             <small class="text-muted" th:text="${newMeetingRoom.getAddress()}"></small>                                            
-                                         </p>
-                                         <p class="card-text">
-                                             <span th:text="${#numbers.formatInteger(newMeetingRoom.getPrice(), 1, 'COMMA') + '円 / 時間'}"></span>                                            
-                                         </p>                                    
-                                     </div>
-                                 </div>    
-                             </a>            
-                         </div>                                               
-                     </div>
-                     
-                     <!-- エリアから探す -->
-                     <div class="row justify-content-center">
-                         <div class="col-xl-5 col-lg-6 col-md-8">                    
-                     
-                             <h2 class="text-center mb-3">エリアから探す</h2>                                        
-                              
-                             <table class="table">
-                                 <tbody>                                                     
-                                     <tr>
-                                         <th>北海道</th>
-                                         <td>
-                                             <a th:href="@{/meeting_rooms?area=北海道}">北海道</a>
-                                         </td>                                     
-                                     </tr>  
-                                     <tr>
-                                         <th>関東</th>
-                                         <td>
-                                             <a th:href="@{/meeting_rooms?area=東京都}" class="me-2">東京都</a>
-                                             <a th:href="@{/meeting_rooms?area=神奈川県}" class="me-2">神奈川県</a>
-                                             <a th:href="@{/meeting_rooms?area=埼玉県}" class="me-2">埼玉県</a>
-                                             <a th:href="@{/meeting_rooms?area=千葉県}" class="me-2">千葉県</a>
-                                             <a th:href="@{/meeting_rooms?area=茨城県}" class="me-2">茨城県</a>
-                                             <a th:href="@{/meeting_rooms?area=栃木県}" class="me-2">栃木県</a>
-                                             <a th:href="@{/meeting_rooms?area=群馬県}">群馬県</a>
-                                         </td>                                     
-                                     </tr>  
-                                     <tr>
-                                         <th>関西</th>
-                                         <td>
-                                             <a th:href="@{/meeting_rooms?area=大阪府}" class="me-2">大阪府</a>
-                                             <a th:href="@{/meeting_rooms?area=京都府}" class="me-2">京都府</a>
-                                             <a th:href="@{/meeting_rooms?area=兵庫県}" class="me-2">兵庫県</a>
-                                             <a th:href="@{/meeting_rooms?area=奈良県}" class="me-2">奈良県</a>
-                                             <a th:href="@{/meeting_rooms?area=滋賀県}" class="me-2">滋賀県</a>
-                                             <a th:href="@{/meeting_rooms?area=和歌山県}">和歌山県</a>
-                                         </td>                                     
-                                     </tr>
-                                 </tbody>
-                             </table>  
-                         </div>
-                     </div>                               
-                </div>
-            </main>
-            
-            <!-- フッター -->
-            <div th:replace="~{fragment :: footer}"></div>
-        </div>    
-        
-        <div th:replace="~{fragment :: scripts}"></div>  
-    </body>
+
+<head>
+	<div th:replace="~{fragment :: meta}"></div>
+	<div th:replace="~{fragment :: styles}"></div>
+	<title>会議室予約システム</title>
+</head>
+
+<body>
+	<div class="moattravel-wrapper">
+		<!-- ヘッダー -->
+		<div th:replace="~{fragment :: header}"></div>
+
+		<main>
+			<!-- メインビジュアルエリア -->
+			<div class="container-fluid p-0 mb-5" style="position: relative; height: 500px; overflow: hidden;">
+				<!-- 背景画像 -->
+				<div style="background-image: url('/images/house01.jpg'); 
+                                background-position: center; 
+                                background-size: cover; 
+                                height: 100%; 
+                                filter: brightness(0.6);">
+				</div>
+
+				<!-- 中央の検索ボックス -->
+				<div class="position-absolute top-50 start-50 translate-middle w-100">
+					<div class="container text-center text-white">
+						<h2 class="mb-4 display-5 fw-bold"
+							style="text-shadow: 2px 2px 4px rgba(0,0,0,0.8); font-family: 'Noto Serif JP', serif;">
+							お探しの<br>部屋を選ぶ。
+						</h2>
+						<div class="row justify-content-center">
+							<div class="col-md-6">
+								<form method="get" th:action="@{/meeting_rooms}"
+									class="input-group input-group-lg shadow">
+									<input type="text" class="form-control rounded-0" name="keyword"
+										th:value="${keyword}" placeholder="エリア・会議室名で検索">
+									<button type="submit" class="btn btn-primary rounded-0 px-4">検索</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="container moattravel-container pb-5">
+
+				<!-- ログイン・ログアウト等のメッセージ -->
+				<div th:if="${param.loggedIn}" class="alert alert-info rounded-0">
+					ログインしました。
+				</div>
+				<div th:if="${param.loggedOut}" class="alert alert-info rounded-0">
+					ログアウトしました。
+				</div>
+				<div th:if="${successMessage}" class="alert alert-info rounded-0">
+					<span th:text="${successMessage}"></span>
+				</div>
+
+				<!-- 新着セクション -->
+				<div class="text-center mb-4">
+					<h2 class="wa-divider">新着の会議室</h2>
+				</div>
+
+				<div class="row row-cols-lg-5 row-cols-2 g-3 mb-5">
+					<!-- コントローラーで渡す変数名に合わせる-->
+					<div class="col" th:each="meetingRoom : ${newMeetingRooms}">
+						<a th:href="@{/meeting_rooms/__${meetingRoom.getId()}__}"
+							class="link-dark moattravel-card-link">
+							<div class="card h-100 border-0 shadow-sm">
+								<img th:if="${meetingRoom.getImageName()}"
+									th:src="@{/storage/__${meetingRoom.getImageName()}__}"
+									class="card-img-top moattravel-vertical-card-image" alt="会議室画像">
+								<img th:unless="${meetingRoom.getImageName()}" th:src="@{/images/noImage.png}"
+									class="card-img-top moattravel-vertical-card-image" alt="NO IMAGE">
+
+								<div class="card-body">
+									<h3 class="card-title h5 mb-2" th:text="${meetingRoom.getName()}"></h3>
+									<p class="card-text mb-1 text-muted small">
+										<span th:text="${meetingRoom.getAddress()}"></span>
+									</p>
+									<p class="card-text fw-bold text-end" style="color: #2a4073;">
+										<span
+											th:text="${#numbers.formatInteger(meetingRoom.getPrice(), 1, 'COMMA') + '円 / 時間'}"></span>
+									</p>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>
+
+				<!-- エリア検索セクション -->
+				<div class="row justify-content-center">
+					<div class="col-xl-10">
+						<div class="text-center mb-4">
+							<h2 class="wa-divider">地域から探す</h2>
+						</div>
+
+						<div class="row g-3 text-center mb-3">
+							<div class="col-12 text-start mb-2 border-bottom pb-1" style="border-color: #ccc;">
+								<span class="fw-bold">主要都市</span>
+							</div>
+							<div class="col-md-2 col-4">
+								<a th:href="@{/meeting_rooms(area='東京都')}"
+									class="btn btn-outline-secondary w-100 py-2 rounded-0">東京</a>
+							</div>
+							<div class="col-md-2 col-4">
+								<a th:href="@{/meeting_rooms(area='大阪府')}"
+									class="btn btn-outline-secondary w-100 py-2 rounded-0">大阪</a>
+							</div>
+							<div class="col-md-2 col-4">
+								<a th:href="@{/meeting_rooms(area='愛知県')}"
+									class="btn btn-outline-secondary w-100 py-2 rounded-0">愛知</a>
+							</div>
+							<div class="col-md-2 col-4">
+								<a th:href="@{/meeting_rooms(area='福岡県')}"
+									class="btn btn-outline-secondary w-100 py-2 rounded-0">福岡</a>
+							</div>
+							<div class="col-md-2 col-4">
+								<a th:href="@{/meeting_rooms(area='北海道')}"
+									class="btn btn-outline-secondary w-100 py-2 rounded-0">北海道</a>
+							</div>
+							<div class="col-md-2 col-4">
+								<a th:href="@{/meeting_rooms(area='沖縄県')}"
+									class="btn btn-outline-secondary w-100 py-2 rounded-0">沖縄</a>
+							</div>
+						</div>
+
+						<div class="row g-3 text-center">
+							<div class="col-12 text-start mb-2 border-bottom pb-1 mt-4" style="border-color: #ccc;">
+								<span class="fw-bold">関東・関西</span>
+							</div>
+							<div class="col-md-2 col-4">
+								<a th:href="@{/meeting_rooms(area='神奈川県')}"
+									class="btn btn-outline-secondary w-100 py-2 rounded-0">神奈川</a>
+							</div>
+							<div class="col-md-2 col-4">
+								<a th:href="@{/meeting_rooms(area='埼玉県')}"
+									class="btn btn-outline-secondary w-100 py-2 rounded-0">埼玉</a>
+							</div>
+							<div class="col-md-2 col-4">
+								<a th:href="@{/meeting_rooms(area='千葉県')}"
+									class="btn btn-outline-secondary w-100 py-2 rounded-0">千葉</a>
+							</div>
+							<div class="col-md-2 col-4">
+								<a th:href="@{/meeting_rooms(area='京都府')}"
+									class="btn btn-outline-secondary w-100 py-2 rounded-0">京都</a>
+							</div>
+							<div class="col-md-2 col-4">
+								<a th:href="@{/meeting_rooms(area='兵庫県')}"
+									class="btn btn-outline-secondary w-100 py-2 rounded-0">兵庫</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<!-- フッター -->
+		<div th:replace="~{fragment :: footer}"></div>
+	</div>
+
+	<div th:replace="~{fragment :: scripts}"></div>
+</body>
+
 </html>

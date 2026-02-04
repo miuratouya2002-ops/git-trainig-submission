@@ -1,138 +1,154 @@
 html {
-
-	font-size: 14px;
-
+  font-size: 14px;
 }
 
 body {
+  font-family: 'Noto Serif JP', serif; /* 明朝体を適用 */
+  background-color: #fcfaf2; /* 和紙のような生成り色 */
+  color: #3e3a39; /* 墨色 */
+}
 
-	font-family: 'Noto Sans JP', sans-serif;
-
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: 0.05em; /* 文字間を少し広げて優雅に */
 }
 
 h1 {
-
-	font-size: 1.5rem;
-
+  font-size: 1.5rem;
 }
 
 h2 {
-	font-size: 1.475rem;
+  font-size: 1.475rem;
 }
 
-.moattravel-vertical-card-image {
-	width: 100%;
-	height: 150px;
-	object-fit: cover;
-}
-
-.moattravel-search-form {
-	max-width: 300px;
+h3 {
+  font-size: 1.25rem;
 }
 
 a {
-
-	color: #5196a6;
-
-	text-decoration: none !important;
-
+  color: #2a4073; /* 藍色 */
+  text-decoration: none !important;
+  transition: 0.3s;
 }
 
 a:hover {
-
-	color: #407784;
-
+    color: #203055;
+    opacity: 0.8;
 }
 
 footer {
-
-	width: 100%;
-
-	height: 60px;
-
-	position: absolute;
-
-	bottom: 0;
-
-	background-color: #f2f0eb;
-
+  width: 100%;
+  height: 60px;
+  position: absolute;
+  bottom: 0;    
+  background-color: #e6e2d3; /* 少し濃い生成り色 */
+  border-top: 1px solid #ccc;
 }
 
 .moattravel-wrapper {
-
-	min-height: 100vh;
-
-	position: relative;
-
-	padding-bottom: 60px;
-
-	box-sizing: border-box;
-
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 60px;
+  box-sizing: border-box;
 }
 
+/* ナビゲーションバー */
 .moattravel-navbar {
-
-	min-height: 60px;
-
+  min-height: 60px;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid #ccc;
 }
 
 .moattravel-logo {
-
-	height: 30px;
-
+  height: 30px;  
 }
 
-.moattravel-btn {
-
-	background-color: #5196a6 !important;
-
-	transition: 0.1s;
-
+/* ボタン（和風カラー） */
+.btn-primary, .moattravel-btn {
+  background-color: #2a4073 !important; /* 藍色 */
+  border-color: #2a4073 !important;
+  border-radius: 0 !important; /* 角を四角く（和風） */
+  color: #fff !important;
+  transition: 0.3s;
 }
 
-.moattravel-btn:hover {
-
-	opacity: 0.8;
-
+.btn-primary:hover, .moattravel-btn:hover {
+  background-color: #203055 !important;
+  opacity: 0.9;
 }
 
-.mnoattravel-page-link:hover {
+/* ページネーション等のリンク */
+.moattravel-page-link {
+  color: #2a4073;
+}
 
-	color: #407784;
-
+.moattravel-page-link:hover {
+  color: #203055;
 }
 
 .moattravel-active {
-
-	background-color: #5196a6 !important;
-
-	border-color: #5196a6 !important;
-
+  background-color: #2a4073 !important;
+  border-color: #2a4073 !important;
+  border-radius: 0 !important;
 }
 
-.moattravel-link-danger {
-	color: #f2594b;
+/* ドロップダウン */
+.moattravel-dropdown-item:active {
+  background-color: #2a4073;
 }
 
-.moattravel-link-danger:hover {
-	color: #a63c3c;
+/* カードスタイル */
+.card {
+    border: none;
+    border-radius: 0 !important; /* 角丸なし */
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 控えめな影 */
 }
 
-.moattravel-btn-danger {
-	background-color: #f2594b !important;
-	transition: 0.1s;
+.moattravel-card-link {
+  transition: 0.3s;
+  color: #3e3a39 !important;
 }
 
-.moattravel-btn-danger:hover {
-	opacity: 0.8;
+.moattravel-card-link:hover .card {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.moattravel-vertical-card-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 0 !important;
+}
+
+.moattravel-horizontal-card-image {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 0 !important;
+}
+
+/* 検索フォーム */
+.moattravel-search-form {
+    max-width: 300px;
+}
+
+.form-control {
+    border-radius: 0 !important;
+    border-color: #ccc;
+}
+
+/* 和風な区切り線 */
+.wa-divider {
+    border-bottom: 2px solid #2a4073;
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
 }
 
 @media screen and (min-width: 1400px) {
-
-	.moattravel-container {
-
-		max-width: 1200px;
-
-	}
-
+  .moattravel-container {
+    max-width: 1200px;
+  }
 }
