@@ -32,7 +32,7 @@ public class WebSecurityConfig {
 				.logout((logout) -> logout
 						.logoutSuccessUrl("/?loggedOut")
 						.permitAll())
-				.csrf(csrf -> csrf.ignoringRequestMatchers("/stripe/webhook"));
+				.csrf().ignoringRequestMatchers("/stripe/webhook");
 
 		return http.build();
 	}
