@@ -47,7 +47,7 @@
 								<form method="get" th:action="@{/meeting_rooms}" class="w-100">
 									<div class="form-group mb-3">
 										<select class="form-control form-select" name="area">
-											<option value="" hidden>選択してください</option>
+											<option value="" hidden="hidden">選択してください</option>
 											<optgroup label="北海道">
 												<option value="北海道" th:selected="${area == '北海道'}">北海道</option>
 											</optgroup>
@@ -88,7 +88,7 @@
 								<form method="get" th:action="@{/meeting_rooms}" class="w-100">
 									<div class="form-group mb-3">
 										<select class="form-control form-select" name="price">
-											<option value="" hidden>選択してください</option>
+											<option value="" hidden="hidden">選択してください</option>
 											<option value="1000" th:selected="${price == 1000}">1,000円以内</option>
 											<option value="2000" th:selected="${price == 2000}">2,000円以内</option>
 											<option value="3000" th:selected="${price == 3000}">3,000円以内</option>
